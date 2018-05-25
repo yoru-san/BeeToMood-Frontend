@@ -1,3 +1,10 @@
 <div *ngFor="let user of users;">
-  <div>{{ user.name }} {{ user.surname }}</div>
+  <div>{{ user.name }} {{ user.surname }} <button><fa name="wrench"></fa></button> <button class="btn btn-danger btn-sm"><fa name="trash"></fa></button>
+  </div>
 </div>
+
+<app-user-add></app-user-add> 
+
+<app-review-list></app-review-list>
+<app-group-list></app-group-list>
+

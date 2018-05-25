@@ -13,4 +13,8 @@ export class ReviewService {
     return this.http.get(this.reviewUrl);
   }
 
+  postReview() : Observable<any> {
+    return this.http.post(this.reviewUrl, { mood: "cool", comment: "encore cool", date: "1995-12-17T03:24:00"});
+  }
+
 }
