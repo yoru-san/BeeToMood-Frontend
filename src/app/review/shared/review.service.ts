@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
+import { Review } from './review';
 
 @Injectable()
 export class ReviewService {
@@ -13,8 +14,8 @@ export class ReviewService {
     return this.http.get(this.reviewUrl);
   }
 
-  postReview() : Observable<any> {
-    return this.http.post(this.reviewUrl, { mood: "cool", comment: "encore cool", date: "1995-12-17T03:24:00"});
+  postReview(review: Review) : Observable<Review> {
+    return this.http.post<Review>(this.reviewUrl, { mood: review.mood, comment: review.comment, date: review.date});
   }
 
 }

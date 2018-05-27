@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Review } from '../shared/review';
+import { ReviewService } from '../shared/review.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-review-add',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewAddComponent implements OnInit {
 
-  constructor() { }
+  review: Review;
+
+  constructor(private reviewService : ReviewService, private toastrService : ToastrService) { }
 
   ngOnInit() {
+    this.review = {
+      mood: "",
+      comment: "",
+      date: new Date()
+    };
+  }
+
+  sendNewReview() {
+    console.log(this.review);
+    this.reviewService.postReview(this.review).subscribe(data => {
+      this.toastrService.success('Envoyée', 'Votre review a bien été envoyée.');
+    });
   }
 
 }

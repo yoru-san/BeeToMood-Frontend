@@ -16,10 +16,6 @@ export class ReviewListComponent implements OnInit {
     this.reviewService.getReview().subscribe(data => {
       this.reviews = data;
     });
-
-    this.reviewService.postReview().subscribe(data => {
-      console.log("good!")
-    })
   }
 
 }

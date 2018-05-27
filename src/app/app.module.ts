@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { AppComponent } from './app.component';
@@ -14,6 +18,7 @@ import { ReviewListComponent } from './review/review-list/review-list.component'
 import { ReviewService } from './review/shared/review.service';
 import { GroupService } from './group/shared/group.service';
 import { GroupListComponent } from './group/group-list/group-list.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { GroupListComponent } from './group/group-list/group-list.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    ToastrModule.forRoot()
   ],
   providers: [UserService, ReviewService, GroupService],
   bootstrap: [AppComponent]
