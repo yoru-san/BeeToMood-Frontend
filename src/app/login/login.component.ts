@@ -9,12 +9,19 @@ import { LoginService } from './shared/login.service';
 export class LoginComponent implements OnInit {
 
   private user;
+  private currentEmail : String;
+  private currentPassword : String;
 
   constructor(private loginService: LoginService) {}
 
   ngOnInit() {
     this.user.email = "";
     this.user.password = "";
+  }
+
+  // if currentEmail et currentPassword bon alors connexion
+  connexion() {
+
   }
 
 }
