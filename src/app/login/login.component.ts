@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  currentEmail : String;
+  currentPassword : String;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // if currentEmail et currentPassword bon alors connexion
+  connexion() {
+
   }
 
 }
