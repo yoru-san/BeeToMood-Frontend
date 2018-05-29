@@ -19,6 +19,8 @@ import { ReviewService } from './review/shared/review.service';
 import { GroupService } from './group/shared/group.service';
 import { GroupListComponent } from './group/group-list/group-list.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { GroupListComponent } from './group/group-list/group-list.component';
     FormsModule,
     BrowserAnimationsModule,
     CommonModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [UserService, ReviewService, GroupService],
   bootstrap: [AppComponent]
