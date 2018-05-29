@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './shared/login.service';
+import * as shajs from 'sha.js';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   // if currentEmail et currentPassword bon alors connexion
   connexion() {
-
+    this.currentPassword = shajs('sha256').update(this.currentPassword).digest('hex');
+    console.log(this.currentPassword);
   }
 
 }
