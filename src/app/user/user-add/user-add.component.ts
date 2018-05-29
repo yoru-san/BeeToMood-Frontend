@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
+import { Group } from '../../group/shared/group';
+import { UserService } from '../shared/user.service';
+import { ToastrService } from 'ngx-toastr';
+import * as shajs from 'sha.js';
+
 
 @Component({
   selector: 'app-user-add',
@@ -7,12 +12,35 @@ import { User } from '../shared/user';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-
+  
   user : User;
-
-  constructor() { }
-
+  
+  constructor(private userService: UserService, private toastrService : ToastrService) { }
+  
   ngOnInit() {
+    this.user = {
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      groups: Group[""],
+      type: ""
+    };
   }
-
+  
+  sendNewUser() {
+    this.user.password = shajs('sha256').update(this.user.password).digest('hex');
+    console.log(this.user.password);
+    this.userService.postUser(this.user).subscribe(data => {
+      this.toastrService.success('Envoyée', 'Votre utilisateur a bien été envoyée.');
+      this.user = {
+        name: "",
+        surname: "",
+        email: "",
+        password: "",
+        groups: Group[""],
+        type: ""
+      };
+    });
+  }
 }

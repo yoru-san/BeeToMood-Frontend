@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   private userUrl = "http://localhost:8080/api/users";
-  private user = {};
 
   constructor(private http : HttpClient) { }
 
@@ -14,7 +13,8 @@ export class UserService {
     return this.http.get(this.userUrl);
   }
 
-  // postUser () : Observable<any> {
-  //   return this.http.post(this.userUrl, {name: 'truc', surname: 'machinchose', email: 'monmail', password: 'pswd', type:'Manager'});
-  // }
+  postUser(user) : Observable<any> {
+    console.log(user);
+    return this.http.post(this.userUrl, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type});
+  }
 }

@@ -1,14 +1,23 @@
-<!-- <h3>Ajout d'un utilisateur</h3>
-<form action="" method="POST">
+<h3>Ajout d'un utilisateur</h3>
+<form>
   First name:
-  <input type="text" name="firstname" value="Mickey" [(ngModel)]="user.name">
+  <input type="text" name="firstname" [(ngModel)]="user.name">
   Last name:
-  <input type="text" name="lastname" value="Mouse" [(ngModel)]="user.surname">
+  <input type="text" name="lastname" [(ngModel)]="user.surname">
   Email:
-  <input type="text" name="lastname" value="Mouse" [(ngModel)]="user.email">
+  <input type="email" name="email" [(ngModel)]="user.email">
   Mdp:
-  <input type="text" name="lastname" value="Mouse" [(ngModel)]="user.password">
+  <input type="password" name="password" [(ngModel)]="user.password">
+  Groupe:
+  <select name="group" id="">
+    
+  </select>
   Type:
-  <input type="text" name="lastname" value="Mouse" [(ngModel)]="user.type">
-  <input type="submit" value="Submit">
-</form> -->
+  <select name="type" [(ngModel)]="user.type">
+    <option selected>Type d'utilisateur</option>    
+    <option value="Manager">Manager</option>
+    <option value="Employé">Employé</option>
+    <option value="Admin">Admin</option>
+  </select>
+  <input type="submit" value="Submit" (click)="sendNewUser()">
+</form>
