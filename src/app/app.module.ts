@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
+import { GroupAddComponent } from './group/group-add/group-add.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { LoginService } from './login/shared/login.service';
     HeaderComponent,
     ParameterComponent,
     LoginComponent,
+    GroupAddComponent,
   ],
   imports: [
     BrowserModule,
