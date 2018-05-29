@@ -1,0 +1,22 @@
+
+  <h2>Se connecter :</h2>
+
+<div>
+  <span>Login : </span>
+  <input type="email" [(ngModel)]= "currentEmail" > 
+</div>
+<br>
+<div>
+  <span>Mot de passe :</span>
+  <input type="password" [(ngModel)]= "currentPassword" >
+</div>
+<br>
+<div>
+  <button (click)="connexion()">Connexion</button>
+</div>
+
+
+<!-- test variable -->
+<span> Le login est : {{ currentEmail }}</span>
+<br>
+<span> Le mot de passe du dessus : {{ currentPassword }}</span>

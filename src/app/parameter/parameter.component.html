@@ -1,0 +1,15 @@
+
+
+<div>
+  <h2>Nouveau mot de passe :</h2>
+  <input type="password" [(ngModel)]= "newPassword" >
+  
+</div>
+<span> Le mot de passe du dessus : {{ newPassword }}</span>
+
+
+<div>
+  <button (click)="validePassword()">Valider</button>
+</div>
+
+<span>Your new password is {{ currentPassword }}</span>
