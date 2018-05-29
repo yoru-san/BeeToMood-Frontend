@@ -6,7 +6,7 @@ import { Group } from './group';
 @Injectable()
 export class GroupService {
   
-  private groupUrl = "http://192.168.0.36:8080/api/groups"
+  private groupUrl = "http://localhost:8080/api/groups"
   
   constructor(private http : HttpClient ) { }
   

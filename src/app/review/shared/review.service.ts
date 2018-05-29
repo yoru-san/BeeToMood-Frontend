@@ -6,9 +6,9 @@ import { Review } from './review';
 @Injectable()
 export class ReviewService {
   
-  private reviewUrl = "http://192.168.0.36:8080/api/reviews"
+  private reviewUrl = "http://localhost:8080/api/reviews"
 
-  constructor(private http : HttpClient ) { }
+  constructor(private http : HttpClient) { }
 
   getReview (): Observable<any> {
     return this.http.get(this.reviewUrl);
