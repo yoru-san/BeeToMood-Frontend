@@ -20,6 +20,7 @@ import { GroupService } from './group/shared/group.service';
 import { GroupListComponent } from './group/group-list/group-list.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './header/header.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { LoginComponent } from './login/login.component';
 
@@ -32,6 +33,7 @@ import { LoginComponent } from './login/login.component';
     ReviewAddComponent,
     ReviewListComponent,
     GroupListComponent,
+    HeaderComponent,
     ParameterComponent,
     LoginComponent,
   ],
