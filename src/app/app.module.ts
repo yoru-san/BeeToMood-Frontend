@@ -21,6 +21,7 @@ import { GroupListComponent } from './group/group-list/group-list.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ParameterComponent } from './parameter/parameter.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ParameterComponent } from './parameter/parameter.component';
     ReviewListComponent,
     GroupListComponent,
     ParameterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
