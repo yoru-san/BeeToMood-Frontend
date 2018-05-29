@@ -23,6 +23,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/shared/login.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { LoginComponent } from './login/login.component';
     ToastrModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [UserService, ReviewService, GroupService],
+  providers: [UserService, ReviewService, GroupService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
