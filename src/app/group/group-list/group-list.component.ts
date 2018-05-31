@@ -20,9 +20,9 @@ export class GroupListComponent implements OnInit {
       });
       this.groups = data;
     });
-    this.groupService.postGroup().subscribe(data => {
-      console.log("group ok");
-    });
+    // this.groupService.postGroup().subscribe(data => {
+    //   console.log("group ok");
+    // });
   }
 
 }

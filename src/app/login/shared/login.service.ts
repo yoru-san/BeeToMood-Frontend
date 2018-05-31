@@ -8,6 +8,6 @@ export class LoginService {
   constructor(private http : HttpClient) { }
 
   findExistingUser(user) {
-    return this.http.post(this.connexionUrl, {user});
+    return this.http.post(this.connexionUrl, {email: user.email, password: user.password});
   }
 }

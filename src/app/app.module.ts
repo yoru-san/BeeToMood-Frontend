@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ToastrModule } from 'ngx-toastr';
@@ -42,6 +43,7 @@ import { GroupAddComponent } from './group/group-add/group-add.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
     FormsModule,
