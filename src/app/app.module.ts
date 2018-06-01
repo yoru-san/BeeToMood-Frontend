@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ToastrModule } from 'ngx-toastr';
-
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -50,7 +50,8 @@ import { GroupAddComponent } from './group/group-add/group-add.component';
     BrowserAnimationsModule,
     CommonModule,
     ToastrModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    DlDateTimePickerDateModule
   ],
   providers: [UserService, ReviewService, GroupService, LoginService],
   bootstrap: [AppComponent]

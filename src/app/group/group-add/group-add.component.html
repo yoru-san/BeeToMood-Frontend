@@ -1,8 +1,13 @@
-<h3>Ajout d'un groupe</h3>
-<form>
-  Nom:
-  <input type="text" name="firstname" [(ngModel)]="group.name">
-  Heure du mail :
-  <!-- Manque horaire -->
-  <input type="submit" value="Submit" (click)="sendNewGroup()">
-</form>
+<div class="container">
+  <h3>Ajout d'un groupe</h3>
+  <form>
+    Nom:
+    <input type="text" name="firstname" [(ngModel)]="group.name">
+    Heure du mail :
+    <!-- <timepicker [(ngModel)]="group.nextNotificationDate"></timepicker> -->
+    <ngb-timepicker [(ngModel)]="group.nextNotificationDate" name="date"></ngb-timepicker>
+    <input type="submit" value="Submit" (click)="sendNewGroup()">
+    
+  </form>
+  
+</div>
