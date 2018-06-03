@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LoginService } from './shared/login.service';
 import * as shajs from 'sha.js';
 
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   
   private user;
   
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
   
   ngOnInit() {
     this.user = {
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user.password);
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
-      console.log(data);
+      this.router.navigate(["/index"]);
     });
   }
 }

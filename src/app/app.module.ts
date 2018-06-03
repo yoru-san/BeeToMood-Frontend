@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
+
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ToastrModule } from 'ngx-toastr';
 import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
@@ -26,6 +27,7 @@ import { ParameterComponent } from './parameter/parameter.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
 import { GroupAddComponent } from './group/group-add/group-add.component';
+import { IndexComponent } from './index/index.component';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { GroupAddComponent } from './group/group-add/group-add.component';
     ParameterComponent,
     LoginComponent,
     GroupAddComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
