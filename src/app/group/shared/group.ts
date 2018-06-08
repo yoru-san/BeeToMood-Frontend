@@ -1,4 +1,4 @@
 export class Group {
     name: string;
-    nextNotificationDate: Date;
+    nextNotificationDate: string;
 }

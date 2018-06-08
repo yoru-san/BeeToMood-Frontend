@@ -23,6 +23,7 @@ export class GroupAddComponent implements OnInit {
   }
   
   sendNewGroup() {
+    console.log(this.group.nextNotificationDate)
     this.groupService.postGroup(this.group).subscribe(data => {
       this.toastrService.success('Envoyée', 'Votre groupe a bien été envoyé.');
       this.group = {
