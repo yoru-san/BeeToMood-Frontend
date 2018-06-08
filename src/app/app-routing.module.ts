@@ -9,16 +9,18 @@ import { UserAddComponent } from './user/user-add/user-add.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IsLoggedGuard } from './is-logged.guard';
+import { IsAllowedGuard } from './is-allowed.guard';
+
 
 
 const routes: Routes = [
   { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'group', component: GroupListComponent },
-  { path: 'group/add', component: GroupAddComponent },
-  { path: 'user', component: UserListComponent },
-  { path: 'user/add', component: UserAddComponent },
-  { path: 'parameters', component: ParameterComponent },          
+  { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
+  { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
+  { path: 'user', component: UserListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
+  { path: 'user/add', component: UserAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
+  { path: 'parameters', component: ParameterComponent, canActivate: [IsLoggedGuard] },
+  { path: 'login', component: LoginComponent },          
   { path: '**', component: PageNotFoundComponent },
 ];
 
