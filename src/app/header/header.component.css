@@ -5,3 +5,12 @@
 nav a{
     color:#000;
 }
+
+img{
+    height: 8.5em;
+    width: 8.5em;
+}
+
+.navbar-expand-lg{
+    height: 5em;
+}
