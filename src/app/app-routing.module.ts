@@ -6,6 +6,7 @@ import { GroupListComponent } from './group/group-list/group-list.component';
 import { GroupAddComponent } from './group/group-add/group-add.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
+import { ParameterComponent } from './parameter/parameter.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'group/add', component: GroupAddComponent },
   { path: 'user', component: UserListComponent },
   { path: 'user/add', component: UserAddComponent },          
-  //{ path: '**', component: PageNotFoundComponent }
+  //{ path: '**', component: PageNotFoundComponent },
+  { path: 'parameter', component: ParameterComponent},
 ];
 
 @NgModule({
