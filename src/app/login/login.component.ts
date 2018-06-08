@@ -23,18 +23,22 @@ export class LoginComponent implements OnInit {
       email: "",
       password: ""
     }
+    this.connectedUser = {
+      id: "",
+      type: ""
+    }
   }
   
   // if currentEmail et currentPassword bon alors connexion
   connexion() {
-    console.log(this.user.password);
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
       if (data) {
-        this.connectedUser.id = data[0].id;
-        this.connectedUser.type = data[0].type
+        console.log(data._id);
+        this.connectedUser.id = data._id;
+        this.connectedUser.type = data.type;
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
-        this.router.navigate(["/index"]);
+        this.router.navigate(["/"]);
       } else {
         this.toastrService.error('Mauvais identifiants !', 'Erreur');
       }

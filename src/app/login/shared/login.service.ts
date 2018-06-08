@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { User } from '../../user/shared/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService {
@@ -7,7 +9,7 @@ export class LoginService {
   private connexionUrl = "http://localhost:8080/api/connexion";
   constructor(private http : HttpClient) { }
 
-  findExistingUser(user) {
-    return this.http.post(this.connexionUrl, {email: user.email, password: user.password});
+  findExistingUser(user) : Observable<User> {
+    return this.http.post<User>(this.connexionUrl, {email: user.email, password: user.password});
   }
 }

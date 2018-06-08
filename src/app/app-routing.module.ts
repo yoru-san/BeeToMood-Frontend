@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'group', component: GroupListComponent },
   { path: 'group/add', component: GroupAddComponent },
   { path: 'user', component: UserListComponent },
-  { path: 'user/add', component: UserAddComponent },          
+  { path: 'user/add', component: UserAddComponent },
+  { path: 'parameters', component: ParameterComponent }          
   //{ path: '**', component: PageNotFoundComponent },
-  { path: 'parameter', component: ParameterComponent},
 ];
 
 @NgModule({
