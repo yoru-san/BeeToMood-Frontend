@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
         console.log(data._id);
         this.connectedUser.id = data._id;
         this.connectedUser.type = data.type;
+        this.connectedUser.name = data.name;
+        this.connectedUser.surname = data.surname;        
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
         this.router.navigate(["/"]);
       } else {

@@ -8,10 +8,11 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { IsLoggedGuard } from './is-logged.guard';
 
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'group', component: GroupListComponent },
   { path: 'group/add', component: GroupAddComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [IsLoggedGuard]
 })
 export class AppRoutingModule { }
