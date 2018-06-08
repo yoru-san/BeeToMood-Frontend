@@ -19,6 +19,7 @@ export class UserAddComponent implements OnInit {
   
   ngOnInit() {
     this.user = {
+      _id: "",
       name: "",
       surname: "",
       email: "",
@@ -34,6 +35,7 @@ export class UserAddComponent implements OnInit {
     this.userService.postUser(this.user).subscribe(data => {
       this.toastrService.success('Envoyée', 'Votre utilisateur a bien été envoyée.');
       this.user = {
+        _id: "",
         name: "",
         surname: "",
         email: "",
