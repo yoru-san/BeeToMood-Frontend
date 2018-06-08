@@ -10,7 +10,7 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    sessionStorage.removeItem('user');
+    
   }
 
 }

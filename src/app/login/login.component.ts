@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
     }
     this.connectedUser = {
       id: "",
-      type: ""
+      type: "",
+      name: "",
+      surname: ""
     }
   }
   
