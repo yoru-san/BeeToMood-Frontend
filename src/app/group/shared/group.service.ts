@@ -14,8 +14,8 @@ export class GroupService {
     return this.http.get(this.groupUrl);
   }
 
-  postGroup(group) : Observable<Group> {
-    console.log(group.nextNotificationDate)
+  postGroup(group) : Observable<Group> {    
+    group.nextNotificationDate = group.nextNotificationDate.hour + ":" + group.nextNotificationDate.minute;
     return this.http.post<Group>(this.groupUrl, {name: group.name, mailDate: group.nextNotificationDate});
   }
 }
