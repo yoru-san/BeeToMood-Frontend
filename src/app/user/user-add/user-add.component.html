@@ -23,32 +23,32 @@
 </form> -->
 
 
-<div class="container-fluid">
+<div class="container-fluid center">
 
 <form>
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
       <label for="inputEmail4">First Name</label>
       <input type="text" name="firstname" [(ngModel)]="user.name" class="form-control"  >
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
       <label for="inputPassword4">Last Name</label>
       <input type="text" name="lastname" [(ngModel)]="user.surname" class="form-control"  >
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
       <input type="email" name="email" [(ngModel)]="user.email" class="form-control"  >
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
       <input type="password" name="password" [(ngModel)]="user.password" class="form-control"  >
     </div>
   </div>
   <div class="form-row">
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-8">
       <label for="inputState">Type</label>
       <select name="type" [(ngModel)]="user.type" class="form-control">
         <option selected>Type d'utilisateur</option>    
@@ -57,14 +57,14 @@
         <option value="Admin">Admin</option>
       </select>
     </div>
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-4">
       <label for="inputZip">Groupe</label>
       <select name="group" id="" class="form-control">
     
       </select>
     </div>
   </div>
-  <div class="form-group col-md-2">
+  <div class="form-group col-md-12">
   <input type="submit" value="Submit" (click)="sendNewUser()">
   </div>
 </form>
