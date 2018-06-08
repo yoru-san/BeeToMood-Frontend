@@ -24,6 +24,7 @@ import { GroupListComponent } from './group/group-list/group-list.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { ParameterComponent } from './parameter/parameter.component';
+import { ParameterService } from './parameter/shared/parameter.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
 import { GroupAddComponent } from './group/group-add/group-add.component';
@@ -58,7 +59,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgbModule.forRoot(),
     DlDateTimePickerDateModule
   ],
-  providers: [UserService, ReviewService, GroupService, LoginService],
+  providers: [UserService, ReviewService, GroupService, LoginService, ParameterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
