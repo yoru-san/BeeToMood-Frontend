@@ -2,12 +2,12 @@
   <nav class="navbarH">
   <nav class="navbar navbar-expand-lg">
   <a routerLink="/"><img src="assets/logo.png" alt="Logo"></a>
-  <a *ngIf="isLogged" class="navbar-brand" >{{ userConnected.name }} {{ userConnected.surname }}</a>
+  <a *ngIf="isConnected()" class="navbar-brand" >{{ userConnected.name }} {{ userConnected.surname }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
-      <div *ngIf="isLogged" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div *ngIf="isConnected()" class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
    
           <li class="nav-item active">

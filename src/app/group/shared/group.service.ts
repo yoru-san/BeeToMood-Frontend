@@ -18,4 +18,12 @@ export class GroupService {
     group.nextNotificationDate = group.nextNotificationDate.hour + ":" + group.nextNotificationDate.minute;
     return this.http.post<Group>(this.groupUrl, {name: group.name, mailDate: group.nextNotificationDate});
   }
+
+  // removeGroup(groupId) : Observable<Group> {
+  //   return this.http.delete<Group>(this.groupUrl, {_id: groupId});
+  // }
+
+  updateGroup(group) : Observable<Group> {
+    return this.http.put<Group>(this.groupUrl, {_id: group._id, name: group.name, mailDate: group.nextNotificationDate} )
+  }
 }

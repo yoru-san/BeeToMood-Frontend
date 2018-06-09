@@ -10,23 +10,35 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   public userConnected; 
   private sessionUser;
-  public isLogged: boolean = false;
+  public isLogged: boolean;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    
+  }
+
+  isConnected() {
+    if (this.sessionUser)
+      return true;
+
     this.sessionUser = JSON.parse(sessionStorage.getItem('user'));
-    console.log(this.sessionUser)
     if (this.sessionUser != null) {
       this.isLogged = true;
       this.userConnected = {
         name: this.sessionUser.name,
         surname: this.sessionUser.surname
       }
+
+      return true;
     }
+
+    return false;
   }
 
   deconnectUser(): void {
+    this.sessionUser = false;
+
     this.userConnected = {
       name: "",
       surname: ""

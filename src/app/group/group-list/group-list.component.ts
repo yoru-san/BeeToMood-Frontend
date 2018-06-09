@@ -25,4 +25,8 @@ export class GroupListComponent implements OnInit {
     // });
   }
 
+  // deleteGroup(groupId) {
+  //   this.groupService.removeGroup(groupId);
+  // }
+
 }

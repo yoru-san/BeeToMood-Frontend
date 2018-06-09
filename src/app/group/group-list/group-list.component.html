@@ -1,5 +1,5 @@
 <button routerLink="/group/add">Ajouter un groupe</button>
 <div *ngFor="let group of groups;">
-  <div>{{ group.name }} {{ group.nextNotificationDate }}h <button><fa name="wrench"></fa></button> <button class="btn btn-danger btn-sm"><fa name="trash"></fa></button>
+  <div>{{ group.name }} {{ group.nextNotificationDate }}h <button><fa name="wrench"></fa></button> <button class="btn btn-danger btn-sm" (click)="deleteGroup(group._id)"><fa name="trash"></fa></button>
   </div>
 </div>
