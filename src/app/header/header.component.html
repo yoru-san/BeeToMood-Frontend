@@ -2,12 +2,12 @@
   <nav class="navbarH">
   <nav class="navbar navbar-expand-lg">
   <a routerLink="/"><img src="assets/logo.png" alt="Logo"></a>
-  <a class="navbar-brand" >{{ userConnected.name }} {{ userConnected.surname }}</a>
+  <a *ngIf="isLogged" class="navbar-brand" >{{ userConnected.name }} {{ userConnected.surname }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div *ngIf="isLogged" class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
    
           <li class="nav-item active">
@@ -16,8 +16,7 @@
           
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-default my-2 my-sm-0" type="submit"><fa name="sign-out"></fa> Sign out</button>
-
+          <button class="btn btn-outline-default my-2 my-sm-0" (click)="deconnectUser()"><fa name="sign-out"></fa> Se déconnecter</button>
         </form>
       </div>
     </nav>
