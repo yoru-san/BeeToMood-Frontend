@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../shared/group.service';
 import { Group } from '../shared/group';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-group-list',
@@ -10,11 +11,11 @@ import * as moment from 'moment';
 })
 export class GroupListComponent implements OnInit {
 
-  public groups : Group;
-  constructor(private groupService : GroupService) { }
+  public groups : Group[];
+  constructor(private groupService: GroupService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.groupService.getGroup().subscribe(data => {
+    this.groupService.getGroups().subscribe(data => {
       data.forEach(element => {
         element.nextNotificationDate = new Date(element.nextNotificationDate).getHours();
       });
@@ -25,8 +26,14 @@ export class GroupListComponent implements OnInit {
     // });
   }
 
-  // deleteGroup(groupId) {
-  //   this.groupService.removeGroup(groupId);
-  // }
+  deleteGroup(groupId) {
+    this.groupService.removeGroup(groupId).subscribe(data => {
+      let groupIndexDeleted = this.groups.findIndex(x => x._id == data._id);
+      this.groups.splice(groupIndexDeleted, 1);
+      this.toastrService.success('Groupe ' + data.name + ' supprimé')
+
+      
+    });
+  }
 
 }
