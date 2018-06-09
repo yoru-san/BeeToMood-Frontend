@@ -10,8 +10,8 @@ export class GroupService {
   
   constructor(private http : HttpClient) { }
   
-  getGroups (): Observable<any> {
-    return this.http.get(this.groupUrl);
+  getGroups (): Observable<Group[]> {
+    return this.http.get<Group[]>(this.groupUrl);
   }
 
   postGroup(group) : Observable<Group> {    
@@ -20,7 +20,6 @@ export class GroupService {
   }
 
   removeGroup(groupId) : Observable<Group> {
-    console.log(this.groupUrl + "/" + groupId)
     return this.http.delete<Group>(this.groupUrl + "/" + groupId);
   }
 

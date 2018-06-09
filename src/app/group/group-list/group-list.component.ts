@@ -16,23 +16,15 @@ export class GroupListComponent implements OnInit {
 
   ngOnInit() {
     this.groupService.getGroups().subscribe(data => {
-      data.forEach(element => {
-        element.nextNotificationDate = new Date(element.nextNotificationDate).getHours();
-      });
       this.groups = data;
     });
-    // this.groupService.postGroup().subscribe(data => {
-    //   console.log("group ok");
-    // });
   }
 
   deleteGroup(groupId) {
     this.groupService.removeGroup(groupId).subscribe(data => {
       let groupIndexDeleted = this.groups.findIndex(x => x._id == data._id);
       this.groups.splice(groupIndexDeleted, 1);
-      this.toastrService.success('Groupe ' + data.name + ' supprimé')
-
-      
+      this.toastrService.success('Groupe ' + data.name + ' supprimé');
     });
   }
 
