@@ -33,7 +33,7 @@ export class UserAddComponent implements OnInit {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     console.log(this.user.password);
     this.userService.postUser(this.user).subscribe(data => {
-      this.toastrService.success('Envoyée', 'Votre utilisateur a bien été envoyée.');
+      this.toastrService.info('Envoyé', 'Votre utilisateur a bien été crée.');
       this.user = {
         _id: "",
         name: "",

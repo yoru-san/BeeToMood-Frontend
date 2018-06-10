@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     }
   }
   
-  // if currentEmail et currentPassword bon alors connexion
   connexion() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {

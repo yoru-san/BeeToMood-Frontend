@@ -24,7 +24,7 @@ export class GroupListComponent implements OnInit {
     this.groupService.removeGroup(groupId).subscribe(data => {
       let groupIndexDeleted = this.groups.findIndex(x => x._id == data._id);
       this.groups.splice(groupIndexDeleted, 1);
-      this.toastrService.success('Groupe ' + data.name + ' supprimé');
+      this.toastrService.info('Groupe ' + data.name + ' supprimé');
     });
   }
 
