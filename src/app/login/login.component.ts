@@ -11,11 +11,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   
-  private user;
+  public user;
   private connectedUser;
 
   
-  constructor(private loginService: LoginService, private router: Router, private toastrService : ToastrService) {}
+  constructor(private loginService: LoginService, private router: Router, private toastrService: ToastrService) {}
   
   ngOnInit() {
     sessionStorage.removeItem('user');
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       password: ""
     }
     this.connectedUser = {
-      id: "",
       type: "",
       name: "",
       surname: ""
@@ -35,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
       if (data) {
-        console.log(data._id);
         this.connectedUser.id = data._id;
         this.connectedUser.type = data.type;
         this.connectedUser.name = data.name;
@@ -43,6 +41,8 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
         this.router.navigate(["/"]);
       } else {
+        this.user.email = "";
+        this.user.password = "";        
         this.toastrService.error('Mauvais identifiants !', 'Erreur');
       }
     });

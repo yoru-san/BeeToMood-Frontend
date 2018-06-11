@@ -25,7 +25,7 @@ export class GroupAddComponent implements OnInit {
   sendNewGroup() {
     console.log(this.group.nextNotificationDate)
     this.groupService.postGroup(this.group).subscribe(data => {
-      this.toastrService.info('Envoyée', 'Votre groupe a bien été crée.');
+      this.toastrService.info('Votre groupe a bien été crée.', 'Envoyée');
       this.group = {
         name: "",
         nextNotificationDate: null

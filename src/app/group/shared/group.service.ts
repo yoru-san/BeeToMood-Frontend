@@ -6,7 +6,7 @@ import { Group } from './group';
 @Injectable()
 export class GroupService {
   
-  private groupUrl = "http://localhost:8080/api/groups"
+  private groupUrl = "http://localhost:8080/api/groups/"
   
   constructor(private http : HttpClient) { }
   
@@ -24,6 +24,6 @@ export class GroupService {
   }
 
   updateGroup(group) : Observable<Group> {
-    return this.http.put<Group>(this.groupUrl, {_id: group._id, name: group.name, mailDate: group.nextNotificationDate} )
+    return this.http.put<Group>(this.groupUrl + group._id, { name: group.name, mailDate: group.nextNotificationDate});
   }
 }

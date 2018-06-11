@@ -4,6 +4,8 @@ import { Group } from '../../group/shared/group';
 import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as shajs from 'sha.js';
+import { GroupService } from '../../group/shared/group.service';
+import { group } from '@angular/animations';
 
 
 @Component({
@@ -13,11 +15,15 @@ import * as shajs from 'sha.js';
 })
 export class UserAddComponent implements OnInit {
   
-  user : User;
+  user: User;
+  groups: Group[];
   
-  constructor(private userService: UserService, private toastrService : ToastrService) { }
+  constructor(private userService: UserService, private groupService: GroupService, private toastrService: ToastrService) { }
   
   ngOnInit() {
+    this.groupService.getGroups().subscribe(data => {
+      this.groups = data;
+    })
     this.user = {
       _id: "",
       name: "",
@@ -31,9 +37,9 @@ export class UserAddComponent implements OnInit {
   
   sendNewUser() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
-    console.log(this.user.password);
+    console.log(this.user.groups);
     this.userService.postUser(this.user).subscribe(data => {
-      this.toastrService.info('Envoyé', 'Votre utilisateur a bien été crée.');
+      this.toastrService.info('Votre utilisateur a bien été crée.', 'Envoyé');
       this.user = {
         _id: "",
         name: "",

@@ -3,6 +3,7 @@ import { GroupService } from '../shared/group.service';
 import { Group } from '../shared/group';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-group-list',
@@ -11,13 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GroupListComponent implements OnInit {
 
-  public groups : Group[];
-  constructor(private groupService: GroupService, private toastrService: ToastrService) { }
+  public group : Group;
+  public groups : Group[];  
+  constructor(private groupService: GroupService, private toastrService: ToastrService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.groupService.getGroups().subscribe(data => {
       this.groups = data;
     });
+
+    this.group = {
+      name: "",
+      nextNotificationDate: null
+    };
   }
 
   deleteGroup(groupId) {
@@ -26,6 +33,22 @@ export class GroupListComponent implements OnInit {
       this.groups.splice(groupIndexDeleted, 1);
       this.toastrService.info('Groupe ' + data.name + ' supprimé');
     });
+  }
+
+  openModificationModal(content, groupId) {
+    this.modalService.open(content).result.then(data => {
+      console.log(this.group.name)
+      console.log(this.group.nextNotificationDate)
+      console.log(groupId)      
+      
+      this.modifyGroup(groupId);
+    });
+  }
+
+  modifyGroup(groupId) {
+    this.groupService.updateGroup(groupId).subscribe(data => {
+
+    })
   }
 
 }
