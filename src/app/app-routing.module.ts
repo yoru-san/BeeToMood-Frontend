@@ -10,8 +10,8 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { IsLoggedGuard } from './is-logged.guard';
-import { IsAllowedGuard } from './is-allowed.guard';
+import { IsLoggedGuard } from './guards/is-logged.guard';
+import { IsAllowedGuard } from './guards/is-allowed.guard';
 
 
 const routes: Routes = [

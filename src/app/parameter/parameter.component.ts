@@ -6,7 +6,7 @@ import * as shajs from 'sha.js';
 @Component({
   selector: 'app-parameter',
   templateUrl: './parameter.component.html',
-  styleUrls: ['./parameter.component.css']
+  styleUrls: ['./parameter.component.scss']
 })
 export class ParameterComponent implements OnInit {
   

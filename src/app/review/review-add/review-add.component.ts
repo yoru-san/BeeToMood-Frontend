@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-review-add',
   templateUrl: './review-add.component.html',
-  styleUrls: ['./review-add.component.css']
+  styleUrls: ['./review-add.component.scss']
 })
 export class ReviewAddComponent implements OnInit {
 

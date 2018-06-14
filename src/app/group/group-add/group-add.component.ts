@@ -7,7 +7,7 @@ import { isNullOrUndefined } from 'util';
 @Component({
   selector: 'app-group-add',
   templateUrl: './group-add.component.html',
-  styleUrls: ['./group-add.component.css']
+  styleUrls: ['./group-add.component.scss']
 })
 export class GroupAddComponent implements OnInit {
 

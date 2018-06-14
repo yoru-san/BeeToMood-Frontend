@@ -5,7 +5,7 @@ import { Review } from '../shared/review';
 @Component({
   selector: 'app-review-list',
   templateUrl: './review-list.component.html',
-  styleUrls: ['./review-list.component.css']
+  styleUrls: ['./review-list.component.scss']
 })
 export class ReviewListComponent implements OnInit {
 

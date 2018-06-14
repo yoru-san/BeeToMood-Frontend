@@ -1,6 +1,0 @@
-@import "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
-
-#select-mood, #select-mood option {
-    font-family: 'FontAwesome' !important;
-    font-style: normal;
-}

@@ -5,13 +5,12 @@ import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as shajs from 'sha.js';
 import { GroupService } from '../../group/shared/group.service';
-import { group } from '@angular/animations';
 
 
 @Component({
   selector: 'app-user-add',
   templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.css']
+  styleUrls: ['./user-add.component.scss']
 })
 export class UserAddComponent implements OnInit {
   
