@@ -1,4 +1,4 @@
-<h3>Ajout d'un utilisateur</h3>
+<h3 id="title">Ajout d'un utilisateur</h3>
   <!--<form>
   First name:
   <input type="text" name="firstname" [(ngModel)]="user.name">
@@ -52,7 +52,7 @@
       <label for="inputState">Type d'utilisateur</label>
       <select name="type" [(ngModel)]="user.type" class="form-control">
         <option value="Manager">Manager</option>
-        <option value="Employé">Employé</option>
+        <option value="Employee">Employé</option>
         <option value="Admin">Admin</option>
       </select>
     </div>
@@ -64,7 +64,7 @@
     </div>
   </div>
   <div class="form-group col-md-12">
-  <input type="submit" value="Créer" (click)="sendNewUser()">
+  <input type="submit" value="Créer" (click)="sendNewUser()" class="btn btn-custom-blue mb-2">
   </div>
 </form>
 </div>

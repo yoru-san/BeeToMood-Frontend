@@ -1,5 +1,5 @@
 
-<h2>Se connecter :</h2>
+<h2 id="Title">Se connecter :</h2>
  
   <div class="container">
     <div class="row">
@@ -10,16 +10,16 @@
       <div class="col-md-6 border-left">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="email" name="email" [(ngModel)]= "user.email" placeholder="email" class="form-control"> 
+            <input type="email" name="email" [(ngModel)]= "user.email" placeholder="email" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="password" name="password" [(ngModel)]= "user.password" placeholder="mot de passe" class="form-control"> 
+            <input type="password" name="password" [(ngModel)]= "user.password" placeholder="mot de passe" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"> 
           </div>
         </div>
         <div class="form-group col-md-5">
-          <button (click)="connexion()">Connexion</button>          
+          <button (click)="connexion()" class="btn btn-custom-blue" >Connexion</button>          
         </div>
       </div>      
     </div>

@@ -1,9 +1,10 @@
 
 
 <div>
-  <h2>Nouveau mot de passe :</h2>
-  <input type="password" [(ngModel)]= "newPassword">
-
-  <button (click)="validatePassword()">Valider</button>
+  <div id="blockMdp">
+      <h2>Nouveau mot de passe :</h2>
+      <input type="password" [(ngModel)]= "newPassword" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <button id="buttonValidate" (click)="validatePassword()" class="btn btn-custom-blue btn-lg ">Valider</button>
 </div>
 
