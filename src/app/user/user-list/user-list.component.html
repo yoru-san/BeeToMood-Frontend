@@ -1,26 +1,27 @@
 <button id="btnAddUser" routerLink="/user/add" class="btn btn-custom-grey">Ajouter un utilisateur</button>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Prénom</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Email</th>
-      <th scope="col">Type d'utilisateur</th>      
-      <th scope="col">Modifier</th>
-      <th scope="col">Supprimer</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users;">
-      <td>{{ user.name }}</td>
-      <td>{{ user.surname }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.type }}</td>      
-      <td><button><fa name="wrench"></fa></button></td>
-      <td><button class="btn btn-danger btn-sm" (click)="deleteUser(user._id)"><fa name="trash"></fa></button></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid userlist">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type d'utilisateur</th>      
+        <th scope="col">Modifier</th>
+        <th scope="col">Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users;">
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.type }}</td>      
+        <td><button><fa name="wrench"></fa></button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteUser(user._id)"><fa name="trash"></fa></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 

@@ -1,18 +1,19 @@
 <button routerLink="/review/add">Ajouter une review</button>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Mood</th>
-      <th scope="col">Review</th>
-      <th scope="col">Date</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let review of reviews;">
-      <td>{{ review.mood }}</td>
-      <td>{{ review.comment }}</td>
-      <td>{{ review.date }} </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid reviewlist">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Mood</th>
+        <th scope="col">Review</th>
+        <th scope="col">Date</th>      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let review of reviews;">
+        <td>{{ review.mood }}</td>
+        <td>{{ review.comment }}</td>
+        <td>{{ review.date }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
