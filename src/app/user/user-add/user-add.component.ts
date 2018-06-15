@@ -5,6 +5,7 @@ import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as shajs from 'sha.js';
 import { GroupService } from '../../group/shared/group.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,8 +17,9 @@ export class UserAddComponent implements OnInit {
   
   user: User;
   groups: Group[];
+  isExisting: boolean;
   
-  constructor(private userService: UserService, private groupService: GroupService, private toastrService: ToastrService) { }
+  constructor(private userService: UserService, private groupService: GroupService, private toastrService: ToastrService, private router: Router) {}
   
   ngOnInit() {
     this.groupService.getGroups().subscribe(data => {
@@ -29,7 +31,7 @@ export class UserAddComponent implements OnInit {
       surname: "",
       email: "",
       password: "",
-      groups: Group[""],
+      groups: [],
       type: ""
     };
   }
@@ -48,6 +50,13 @@ export class UserAddComponent implements OnInit {
         groups: Group[""],
         type: ""
       };
+    });
+  }
+
+  updateExistingUser() {
+    this.user.password = shajs('sha256').update(this.user.password).digest('hex');
+    this.userService.updateUser(this.user).subscribe(data => {
+      this.toastrService.info('Votre utilisateur a bien été modifié.', 'Envoyé')
     });
   }
 }

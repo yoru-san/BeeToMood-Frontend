@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -9,17 +10,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-
+  
   public users : User[];
-  constructor(private userService : UserService, private toastrService: ToastrService) { }
-
+  constructor(private userService : UserService, private toastrService: ToastrService, private router: Router) { }
+  
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
-        this.users = data;
+      this.users = data;
       console.log(data);
     });
   }
-
+  
   deleteUser(user) {
     this.userService.removeUser(user).subscribe(data => {
       console.log(data)
@@ -28,5 +29,8 @@ export class UserListComponent implements OnInit {
       this.toastrService.info('Utilisateur ' + data.name + " " + data.surname + ' supprimé');
     });
   }
-
+  
+  updateUser(user) {
+    this.router.navigate(["/user/add", user]);
+  }
 }
