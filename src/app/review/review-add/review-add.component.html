@@ -1,13 +1,25 @@
-<form>
-  <span>Mood du jour : </span>
-  <select name="mood" id="select-mood" [(ngModel)]="review.mood">
-    <option value="good">&#xf118; Good</option>
-    <option value="average">&#xf11a; Average</option>
-    <option value="bad">&#xf119; Bad</option>
-  </select>
-<br>
-<span>Laisser un commentaire (facultatif) : </span><br>
-<textarea name="comment" cols="30" rows="10" [(ngModel)]="review.comment"></textarea><br>
-<small>Ce questionnaire restera anonyme.</small>
-<input type="button" value="Envoyer" (click)="sendNewReview()">
-</form>
+<div class="container-fluid center">
+  <form>
+      <div class="form-row">
+
+              <span>Mood du jour : </span>
+              <select class="form-control" name="mood" id="select-mood" [(ngModel)]="review.mood">
+                <option value="good">&#xf118; Good</option>
+                <option value="average">&#xf11a; Average</option>
+                <option value="bad">&#xf119; Bad</option>
+              </select><br>   
+              <span>Laisser un commentaire (facultatif) : </span><br>
+              <textarea class="form-control" name="comment"  rows="8" [(ngModel)]="review.comment"></textarea><br>   
+              <div class="col-md-8">
+          <small>Ce questionnaire restera anonyme.</small>
+                
+              </div>       
+              <div class="col-md-4">
+          <input type="button" value="Envoyer" (click)="sendNewReview()">
+                
+              </div> 
+        
+      </div>
+  </form>
+</div>
+
