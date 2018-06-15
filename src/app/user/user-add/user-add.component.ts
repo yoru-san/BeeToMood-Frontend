@@ -29,7 +29,7 @@ export class UserAddComponent implements OnInit {
       surname: "",
       email: "",
       password: "",
-      groups: Group[""],
+      groups: [],
       type: ""
     };
   }

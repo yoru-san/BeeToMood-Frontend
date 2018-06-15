@@ -15,7 +15,7 @@ export class UserService {
   }
 
   postUser(user) : Observable<User> {
-    console.log(user);
+    console.log(user.groups[0]);
     return this.http.post<User>(this.userUrl, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups});
   }
 
