@@ -1,38 +1,24 @@
 
 <h2>Se connecter :</h2>
-<!-- 
-  <div>
-    <span>Login : </span>
-    <input type="email" name="email" [(ngModel)]= "user.email" > 
-  </div>
-  <br>
-  <div>
-    <span>Mot de passe :</span>
-    <input type="password" name="password" [(ngModel)]= "user.password" >
-  </div>
-  <br>
-  <div>
-    <button (click)="connexion()">Connexion</button>
-  </div> -->
-  
+ 
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>BEE TO MOOD</h1>
-        <img src="assets/logo.png" alt="logo">
+        <h1>Bee-to-Mood</h1>
+        <img src="assets/logo.png" class="login-logo" alt="logo">
       </div>
       <div class="col-md-6 border-left">
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <input type="email" name="email" [(ngModel)]= "user.email" placeholder="login" class="form-control"> 
+          <div class="form-group col-md-6">
+            <input type="email" name="email" [(ngModel)]= "user.email" placeholder="email" class="form-control"> 
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <input type="password" name="password" [(ngModel)]= "user.password" placeholder="Password" class="form-control"> 
+          <div class="form-group col-md-6">
+            <input type="password" name="password" [(ngModel)]= "user.password" placeholder="mot de passe" class="form-control"> 
           </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
           <button (click)="connexion()">Connexion</button>          
         </div>
       </div>      

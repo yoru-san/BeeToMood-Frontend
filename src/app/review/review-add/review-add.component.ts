@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-review-add',
   templateUrl: './review-add.component.html',
-  styleUrls: ['./review-add.component.css']
+  styleUrls: ['./review-add.component.scss']
 })
 export class ReviewAddComponent implements OnInit {
 
@@ -26,7 +26,7 @@ export class ReviewAddComponent implements OnInit {
     console.log(this.review);
     this.review.date = new Date();
     this.reviewService.postReview(this.review).subscribe(data => {
-      this.toastrService.success('Envoyée', 'Votre review a bien été envoyée.');
+      this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
       this.review = {
         mood: "",
         comment: "",

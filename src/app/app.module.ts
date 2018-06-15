@@ -14,7 +14,7 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserService } from './user/shared/user.service';
-import { UserAddComponent } from './user/user-add/user-add.component';;
+import { UserAddComponent } from './user/user-add/user-add.component';
 import { ReviewAddComponent } from './review/review-add/review-add.component';
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import { ReviewService } from './review/shared/review.service';

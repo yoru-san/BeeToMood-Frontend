@@ -7,7 +7,7 @@ import { isNullOrUndefined } from 'util';
 @Component({
   selector: 'app-group-add',
   templateUrl: './group-add.component.html',
-  styleUrls: ['./group-add.component.css']
+  styleUrls: ['./group-add.component.scss']
 })
 export class GroupAddComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class GroupAddComponent implements OnInit {
   sendNewGroup() {
     console.log(this.group.nextNotificationDate)
     this.groupService.postGroup(this.group).subscribe(data => {
-      this.toastrService.success('Envoyée', 'Votre groupe a bien été envoyé.');
+      this.toastrService.info('Votre groupe a bien été crée.', 'Envoyée');
       this.group = {
         name: "",
         nextNotificationDate: null

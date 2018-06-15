@@ -1,2 +1,5 @@
-<button type="button" class="btn btn-grey btn-lg btn-block" routerLink="/user">Gestion du personnel</button>
-<button type="button" class="btn btn-grey btn-lg btn-block" routerLink="/group">Gestion des groupes</button>
+<div class="container">
+    <button [hidden]="isEmployee" type="button" class="btn btn-grey btn-lg btn-block" routerLink="/user">Gestion du personnel</button>
+    <button [hidden]="isEmployee" type="button" class="btn btn-grey btn-lg btn-block" routerLink="/group">Gestion des groupes</button>
+    <button *ngIf="isEmployee" type="button" class="btn btn-grey btn-lg btn-block" routerLink="/review">Voir les reviews</button>
+</div>

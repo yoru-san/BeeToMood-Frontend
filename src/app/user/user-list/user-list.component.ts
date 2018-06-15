@@ -1,27 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
 
-  public users : User;
-  constructor(private userService : UserService) { }
+  public users : User[];
+  constructor(private userService : UserService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(data => {
-      this.users = data;
+    this.userService.getUsers().subscribe(data => {
+        this.users = data;
       console.log(data);
     });
+  }
 
-    // this.userService.postUser().subscribe(data => {
-    //   console.log("c'est bon !");
-    //   console.log(data);      
-    // });
+  deleteUser(user) {
+    this.userService.removeUser(user).subscribe(data => {
+      console.log(data)
+      let userIndexDeleted = this.users.findIndex(x => x._id == data._id);
+      this.users.splice(userIndexDeleted, 1);
+      this.toastrService.info('Utilisateur ' + data.name + " " + data.surname + ' supprimé');
+    });
   }
 
 }

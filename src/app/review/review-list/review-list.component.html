@@ -1,5 +1,18 @@
-<div *ngFor="let review of reviews;">
-  <div>{{ review.mood }} {{ review.comment }} - {{ review.date }}</div>
-</div>
+<button routerLink="/review/add">Ajouter une review</button>
 
-<app-review-add></app-review-add>  
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Mood</th>
+      <th scope="col">Review</th>
+      <th scope="col">Date</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let review of reviews;">
+      <td>{{ review.mood }}</td>
+      <td>{{ review.comment }}</td>
+      <td>{{ review.date }} </td>
+    </tr>
+  </tbody>
+</table>
