@@ -13,34 +13,9 @@
     <tr *ngFor="let group of groups;">
       <td>{{ group.name }}</td>
       <td>{{ group.nextNotificationDate }}h </td>
-      <td><button><fa name="wrench" (click)="openModificationModal(modal, group._id)"></fa></button></td>
+      <td><a class="btn btn-secondary" [routerLink]="['edit', group._id]"><fa name="wrench"></fa></a></td>
       <td><button class="btn btn-danger btn-sm" (click)="deleteGroup(group._id)"><fa name="trash"></fa></button></td>
 
     </tr>
   </tbody>
 </table>
-
-<ng-template #modal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Mise à jour du groupe</h4>
-    <button type="button" class="close" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label>Nom du groupe :</label>
-        <div class="input-group">
-          <input [(ngModel)]="group.name" name="name" type="text" class="form-control">
-        </div>
-        <label>Heure du mail journalier :</label>
-        <ngb-timepicker [(ngModel)]="group.nextNotificationDate" name="date"></ngb-timepicker>
-
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark">Enregistrer</button>
-  </div>
-</ng-template>

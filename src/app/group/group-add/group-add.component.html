@@ -10,6 +10,7 @@
           <label class="mr-2">Heure d'envoi du mail : </label>
           <ngb-timepicker [(ngModel)]="group.nextNotificationDate" name="date"></ngb-timepicker>
       </div>
-      <button type="submit" class="btn btn-custom-blue mb-2" (click)="sendNewGroup()">Créer</button>
+      <button type="submit" *ngIf="!groupId" class="btn btn-custom-blue mb-2" (click)="sendNewGroup()">Créer</button>
+      <button type="submit" *ngIf="groupId" class="btn btn-custom-blue mb-2" (click)="editGroup()">Mettre a jour</button>
     </form>
 </div>

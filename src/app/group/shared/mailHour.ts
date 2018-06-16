@@ -1,4 +1,4 @@
 export class mailHour {
-    hour: string;
-    minute: string;
+    hour: number;
+    minute: number;
 }
