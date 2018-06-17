@@ -4,7 +4,6 @@ import { Group } from '../shared/group';
 import { GroupService } from '../shared/group.service';
 import { ToastrService } from 'ngx-toastr';
 import { isNullOrUndefined } from 'util';
-import { mailHour } from '../shared/mailHour';
 
 @Component({
   selector: 'app-group-add',
@@ -45,7 +44,7 @@ export class GroupAddComponent implements OnInit {
   
   sendNewGroup() {
     console.log(this.group.nextNotificationDate)
-    this.groupService.postGroup(this.group).subscribe((data) => {
+    this.groupService.postGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été crée.', 'Envoyée');
       this.group = {
         name: "",
@@ -55,7 +54,7 @@ export class GroupAddComponent implements OnInit {
   }
 
   editGroup() {
-    this.groupService.updateGroup(this.group).subscribe((data) => {
+    this.groupService.updateGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été mis a jour.', 'Envoyée');
     });
   }

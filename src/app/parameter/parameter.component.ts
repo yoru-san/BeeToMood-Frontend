@@ -21,10 +21,10 @@ export class ParameterComponent implements OnInit {
     this.sessionUser = JSON.parse(sessionStorage.getItem('user'));
     this.newPassword = shajs('sha256').update(this.newPassword).digest('hex');
 
-    this.parameterService.updatePassword(this.sessionUser.id, this.newPassword).subscribe(data => {
+    this.parameterService.updatePassword(this.sessionUser.id, this.newPassword).subscribe(() => {
       this.toastrService.info('Votre mot de passe a bien été modifié.', 'Réussite');
       this.newPassword = "";
-    }, (error) => {
+    }, () => {
       this.toastrService.error('Votre mot de passe n\'a pas pu être modifié.', 'Erreur');
       this.newPassword = "";
     });

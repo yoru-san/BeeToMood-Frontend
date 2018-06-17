@@ -6,9 +6,9 @@ import { Group } from './group';
 @Injectable()
 export class GroupService {
   
-  private groupUrl = "http://localhost:8080/api/groups/"
+  private groupUrl = "http://localhost:8080/api/groups/";
   
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
   
   getGroups(): Observable<Group[]> {
     return this.http.get<Group[]>(this.groupUrl);
@@ -18,16 +18,16 @@ export class GroupService {
     return this.http.get<Group>(this.groupUrl + groupId);
   }
 
-  postGroup(group) : Observable<Group> {    
+  postGroup(group): Observable<Group> {    
     group.nextNotificationDate = group.nextNotificationDate.hour + ":" + group.nextNotificationDate.minute;
     return this.http.post<Group>(this.groupUrl, {name: group.name, mailDate: group.nextNotificationDate});
   }
 
-  removeGroup(groupId) : Observable<Group> {
+  removeGroup(groupId): Observable<Group> {
     return this.http.delete<Group>(this.groupUrl + groupId);
   }
 
-  updateGroup(group) : Observable<Group> {
+  updateGroup(group): Observable<Group> {
     return this.http.put<Group>(this.groupUrl + group._id, { name: group.name, mailDate: group.nextNotificationDate});
   }
 }

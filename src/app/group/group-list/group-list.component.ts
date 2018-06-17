@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../shared/group.service';
 import { Group } from '../shared/group';
-import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 

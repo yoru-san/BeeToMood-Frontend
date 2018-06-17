@@ -5,7 +5,7 @@ import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as shajs from 'sha.js';
 import { GroupService } from '../../group/shared/group.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 
 

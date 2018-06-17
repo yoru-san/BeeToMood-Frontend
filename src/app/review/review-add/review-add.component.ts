@@ -25,7 +25,7 @@ export class ReviewAddComponent implements OnInit {
   sendNewReview() {
     console.log(this.review);
     this.review.date = new Date();
-    this.reviewService.postReview(this.review).subscribe(data => {
+    this.reviewService.postReview(this.review).subscribe(() => {
       this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
       this.review = {
         mood: "",

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './shared/login.service';
 import * as shajs from 'sha.js';
 import { ToastrService } from 'ngx-toastr';
