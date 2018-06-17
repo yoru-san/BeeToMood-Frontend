@@ -29,8 +29,4 @@ export class UserListComponent implements OnInit {
       this.toastrService.info('Utilisateur ' + data.name + " " + data.surname + ' supprimé');
     });
   }
-  
-  updateUser(user) {
-    this.router.navigate(["/user/add", user]);
-  }
 }

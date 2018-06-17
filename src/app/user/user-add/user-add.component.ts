@@ -5,7 +5,8 @@ import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr';
 import * as shajs from 'sha.js';
 import { GroupService } from '../../group/shared/group.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 
 @Component({
@@ -16,15 +17,19 @@ import { Router } from '@angular/router';
 export class UserAddComponent implements OnInit {
   
   user: User;
+  userId: string;
   groups: Group[];
-  isExisting: boolean;
   
-  constructor(private userService: UserService, private groupService: GroupService, private toastrService: ToastrService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private groupService: GroupService, 
+    private toastrService: ToastrService, 
+    private activatedRoute: ActivatedRoute) {}
   
   ngOnInit() {
     this.groupService.getGroups().subscribe(data => {
       this.groups = data;
-    })
+    });
     this.user = {
       _id: "",
       name: "",
@@ -34,12 +39,18 @@ export class UserAddComponent implements OnInit {
       groups: [],
       type: ""
     };
+
+    this.userId = this.activatedRoute.snapshot.params.id;
+    if (!(isNullOrUndefined(this.userId))) {
+      this.userService.getUser(this.userId).subscribe(data => {
+        this.user = data;
+      })
+    }
   }
   
   sendNewUser() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
-    console.log(this.user.groups);
-    this.userService.postUser(this.user).subscribe(data => {
+    this.userService.postUser(this.user).subscribe(() => {
       this.toastrService.info('Votre utilisateur a bien été crée.', 'Envoyé');
       this.user = {
         _id: "",
@@ -55,7 +66,7 @@ export class UserAddComponent implements OnInit {
 
   updateExistingUser() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
-    this.userService.updateUser(this.user).subscribe(data => {
+    this.userService.updateUser(this.user).subscribe(() => {
       this.toastrService.info('Votre utilisateur a bien été modifié.', 'Envoyé')
     });
   }

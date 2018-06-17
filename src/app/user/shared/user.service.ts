@@ -6,9 +6,13 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
-  private userUrl = "http://localhost:8080/api/users";
+  private userUrl = "http://localhost:8080/api/users/";
 
   constructor(private http : HttpClient) { }
+
+  getUser(userId) : Observable<User> {
+    return this.http.get<User>(this.userUrl + userId);
+  }
 
   getUsers() : Observable<User[]> {
     return this.http.get<User[]>(this.userUrl);
@@ -19,11 +23,11 @@ export class UserService {
   }
 
   updateUser(user) : Observable<User> {
-    return this.http.put<User>(this.userUrl + "/" + user._id, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups});
+    return this.http.put<User>(this.userUrl + user._id, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups});
   }
 
 
   removeUser(userId): Observable<User> {
-    return this.http.delete<User>(this.userUrl + "/" + userId);
+    return this.http.delete<User>(this.userUrl + userId);
   }
 }

@@ -1,5 +1,6 @@
 <div class="container">
-  <h3>Ajout d'un groupe</h3>
+  <h3 *ngIf="!groupId">Ajout d'un groupe</h3>
+  <h3 *ngIf="groupId">Modification d'un groupe</h3>
 
   <form class="form-inline row align-items-center justify-content-center">
       <div class="form-group mb-2">

@@ -34,21 +34,4 @@ export class GroupListComponent implements OnInit {
       this.toastrService.info('Groupe ' + data.name + ' supprimé');
     });
   }
-
-  openModificationModal(content, groupId) {
-    this.modalService.open(content).result.then(data => {
-      console.log(this.group.name)
-      console.log(this.group.nextNotificationDate)
-      console.log(groupId)      
-      
-      this.modifyGroup(groupId);
-    });
-  }
-
-  modifyGroup(groupId) {
-    this.groupService.updateGroup(groupId).subscribe(data => {
-
-    })
-  }
-
 }
