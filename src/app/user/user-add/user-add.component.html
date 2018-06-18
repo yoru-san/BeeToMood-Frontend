@@ -30,9 +30,9 @@
     <div class="form-group col-md-8">
       <label for="inputState">Type d'utilisateur</label>
       <select name="type" [(ngModel)]="user.type" class="form-control">
-        <option value="Manager">Manager</option>
+        <option *ngIf="isAllowed" value="Manager">Manager</option>
         <option value="Employee">Employé</option>
-        <option value="Admin">Admin</option>
+        <option *ngIf="isAllowed" value="Admin">Admin</option>
       </select>
     </div>
     <div class="form-group col-md-4">

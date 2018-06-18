@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit {
       this.isLogged = true;
       this.userConnected = {
         name: this.sessionUser.name,
-        surname: this.sessionUser.surname
+        surname: this.sessionUser.surname,
+        type: this.sessionUser.type
       }
 
       return true;

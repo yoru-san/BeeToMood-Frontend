@@ -17,8 +17,10 @@ import { isNullOrUndefined } from 'util';
 export class UserAddComponent implements OnInit {
   
   user: User;
+  connectedUser: User;
   userId: string;
   groups: Group[];
+  isAllowed: boolean;
   
   constructor(
     private userService: UserService, 
@@ -27,6 +29,10 @@ export class UserAddComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {}
   
   ngOnInit() {
+    this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+    if (this.connectedUser.type == "Admin") {
+      this.isAllowed = true;
+    }
     this.groupService.getGroups().subscribe(data => {
       this.groups = data;
     });
