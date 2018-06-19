@@ -23,9 +23,9 @@ export class UserService {
   }
 
   updateUser(user) : Observable<User> {
+    console.log(user.groups)
     return this.http.put<User>(this.userUrl + user._id, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups});
   }
-
 
   removeUser(userId): Observable<User> {
     return this.http.delete<User>(this.userUrl + userId);

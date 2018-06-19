@@ -11,10 +11,6 @@
           <label class="mr-2">Heure d'envoi du mail : </label>
           <ngb-timepicker [(ngModel)]="group.nextNotificationDate" name="date"></ngb-timepicker>
       </div>
-
-      <select name="members" class="form-control">
-          <option *ngFor="let user of users" value="user._id">{{user.name}} {{user.surname}}</option>
-      </select>
       <button type="submit" *ngIf="!groupId" class="btn btn-custom-blue mb-2" (click)="sendNewGroup()">Créer</button>
       <button type="submit" *ngIf="groupId" class="btn btn-custom-blue mb-2" (click)="editGroup()">Mettre a jour</button>
     </form>
@@ -27,9 +23,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of groupUsers">
+          <tr *ngFor="let user of usersInGroup">
             <th scope="row">{{user.name}} {{user.surname}}</th>
             <td><button class="btn btn-danger btn-sm" (click)="deleteUserFromGroup(user._id)"><fa name="trash"></fa></button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Autres utilisateurs</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of newUsers">
+            <th scope="row">{{user.name}} {{user.surname}}</th>
+            <td><button class="btn btn-sm"><fa name="plus-square" (click)="addUserToGroup(user)"></fa></button></td>
           </tr>
         </tbody>
       </table>

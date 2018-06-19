@@ -17,7 +17,8 @@ export class GroupAddComponent implements OnInit {
   groupId: string;
   group: Group;
   users: User[];
-  groupUsers: User[];
+  newUsers: User[];
+  usersInGroup: User[];
   
   constructor(
     private groupService: GroupService,
@@ -48,25 +49,15 @@ export class GroupAddComponent implements OnInit {
 
     console.log(this.groupId)
     this.userService.getUsers().subscribe(data => {
-      data.forEach(user => {
-        console.log("groups de l'user " + user.groups);
-        //On cherche  une occurence dans le tableau de groupe de l'utilisateur avec le groupe actuel
-        var userGroupIndex = user.groups.findIndex(x => x._id == this.groupId);
-        console.log("index du group " + userGroupIndex);
-        //Si une occurence est trouvé, on retire l'utilisateur des data avec son index
-        if (userGroupIndex != -1) {
-          var removedUser = user.groups.findIndex(x => x._id == user._id);
-          console.log("index à retirer de data " + removedUser);
-          data.splice(removedUser, 1);
-          //On ajoute ensuite cet utilisateur dans un tableau de tout les utilisateurs de ce gropue
-          this.groupUsers = [];
-          this.groupUsers.push(user);
-          console.log("user dans le bon group " + this.groupUsers);
-        }
+      this.usersInGroup = data.filter(user => {
+        if (user.groups.findIndex(group => group._id == this.groupId) != -1)
+          return user;
       });
-      //Tout les autres utilisateurs sont affectés à un autre tableau
-      this.users = data;
-      console.log("les users pas dans le group " + this.users);
+
+      this.newUsers = data.filter(user => {
+        if (!this.usersInGroup.includes(user))
+          return user;
+      });
     });
   }
   
@@ -85,6 +76,21 @@ export class GroupAddComponent implements OnInit {
     this.groupService.updateGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été mis a jour.', 'Envoyée');
     });
+  }
+
+  addUserToGroup(user) {
+    console.log(user)
+    user.groups.push(this.group);
+    this.usersInGroup.push(user);
+    this.userService.updateUser(user).subscribe(() => {
+      let userToRemove = this.newUsers.findIndex(x => x._id == user._id)
+      this.newUsers.splice(userToRemove, 1);
+      console.log(this.newUsers);
+    });
+  }
+
+  deleteUserFromGroup() {
+
   }
 
 }
