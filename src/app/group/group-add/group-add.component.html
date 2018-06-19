@@ -25,7 +25,7 @@
         <tbody>
           <tr *ngFor="let user of usersInGroup">
             <th scope="row">{{user.name}} {{user.surname}}</th>
-            <td><button class="btn btn-danger btn-sm" (click)="deleteUserFromGroup(user._id)"><fa name="trash"></fa></button></td>
+            <td><button class="btn btn-danger btn-sm" (click)="deleteUserFromGroup(user)"><fa name="trash"></fa></button></td>
           </tr>
         </tbody>
       </table>

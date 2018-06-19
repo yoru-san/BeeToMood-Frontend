@@ -79,18 +79,22 @@ export class GroupAddComponent implements OnInit {
   }
 
   addUserToGroup(user) {
-    console.log(user)
     user.groups.push(this.group);
     this.usersInGroup.push(user);
     this.userService.updateUser(user).subscribe(() => {
-      let userToRemove = this.newUsers.findIndex(x => x._id == user._id)
+      let userToRemove = this.newUsers.findIndex(x => x._id == user._id);
       this.newUsers.splice(userToRemove, 1);
-      console.log(this.newUsers);
     });
   }
 
-  deleteUserFromGroup() {
-
+  deleteUserFromGroup(user) {
+    let groupToRemove = user.groups.findIndex(x => x._id == this.groupId);
+    user.groups.splice(groupToRemove, 1);
+    this.userService.updateUser(user).subscribe(() => {
+      let userToRemove = this.usersInGroup.findIndex(x => x._id == user._id);
+      this.usersInGroup.splice(userToRemove, 1);
+      this.newUsers.push(user);
+    })
   }
 
 }
