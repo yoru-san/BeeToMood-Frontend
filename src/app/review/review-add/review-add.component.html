@@ -1,6 +1,10 @@
 <div class="container-fluid center">
     <form>
         <div class="form-row">
+            <span>Groupe correspondant :</span>
+            <select name="groupId" [(ngModel)]="review.groupId">
+                <option *ngFor="let group of usergroups" value="group._id">{{ group.name }}</option>
+            </select>
             
             <span>Mood du jour : </span>
             <select class="form-control" name="mood" id="select-mood" [(ngModel)]="review.mood">

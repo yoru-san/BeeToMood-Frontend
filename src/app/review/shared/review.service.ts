@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Review } from './review';
+import { query } from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class ReviewService {
@@ -10,8 +11,9 @@ export class ReviewService {
 
   constructor(private http : HttpClient) { }
 
-  getReview (): Observable<any> {
-    return this.http.get(this.reviewUrl);
+  getReview (query): Observable<any> {
+    console.log(query)
+    return this.http.get(this.reviewUrl + "?" + query);
   }
 
   postReview(review: Review) : Observable<Review> {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../shared/review.service';
 import { Review } from '../shared/review';
+import { User } from '../../user/shared/user';
 
 @Component({
   selector: 'app-review-list',
@@ -10,10 +11,13 @@ import { Review } from '../shared/review';
 export class ReviewListComponent implements OnInit {
 
   public reviews : Review;
+  connectedUser: User;
   constructor(private reviewService : ReviewService) { }
 
   ngOnInit() {
-    this.reviewService.getReview().subscribe(data => {
+    this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+  console.log(this.connectedUser.groups);
+    this.reviewService.getReview("groupId=" + this.connectedUser.groups).subscribe(data => {
       this.reviews = data;
     });
   }

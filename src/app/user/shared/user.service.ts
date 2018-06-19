@@ -19,7 +19,7 @@ export class UserService {
   }
 
   postUser(user) : Observable<User> {
-    return this.http.post<User>(this.userUrl, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups});
+    return this.http.post<User>(this.userUrl, {name: user.name, surname: user.surname, email: user.email, password: user.password, type: user.type, groups: user.groups, firstConnection: user.firstConnection});
   }
 
   updateUser(user) : Observable<User> {

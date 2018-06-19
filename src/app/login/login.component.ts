@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './shared/login.service';
 import * as shajs from 'sha.js';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../user/shared/user.service';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +38,19 @@ export class LoginComponent implements OnInit {
         this.connectedUser.id = data._id;
         this.connectedUser.type = data.type;
         this.connectedUser.name = data.name;
-        this.connectedUser.surname = data.surname;        
+        this.connectedUser.surname = data.surname;    
+        this.connectedUser.groups = data.groups;        
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
-        this.router.navigate(["/"]);
+        console.log(data.firstConnection);
+        if (!data.firstConnection) {
+          data.firstConnection = true;
+          this.connectedUser.firstConnection = data.firstConnection;
+          this.loginService.changeConnectionStatus(this.connectedUser).subscribe(() => {
+            this.router.navigate(["/parameters"]);
+          });
+        } else {
+          this.router.navigate(["/"]);
+        }
       } else {
         this.user.email = "";
         this.user.password = "";        

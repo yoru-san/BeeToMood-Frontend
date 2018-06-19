@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from '../shared/review';
 import { ReviewService } from '../shared/review.service';
 import { ToastrService } from 'ngx-toastr';
+import { Group } from '../../group/shared/group';
+import { User } from '../../user/shared/user';
+import { GroupService } from '../../group/shared/group.service';
 
 @Component({
   selector: 'app-review-add',
@@ -11,11 +14,22 @@ import { ToastrService } from 'ngx-toastr';
 export class ReviewAddComponent implements OnInit {
 
   review: Review;
+  connectedUser: User;
+  usergroups: Group[];
 
-  constructor(private reviewService : ReviewService, private toastrService : ToastrService) { }
+  constructor(private reviewService : ReviewService, private toastrService : ToastrService, private groupService: GroupService) { }
 
   ngOnInit() {
+    this.usergroups = [];
+
+    this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+      this.connectedUser.groups.forEach(g => {
+        this.usergroups.push(g);
+        console.log(this.usergroups)
+      });
+    
     this.review = {
+      groupId: "",
       mood: "",
       comment: "",
       date: null
@@ -28,6 +42,7 @@ export class ReviewAddComponent implements OnInit {
     this.reviewService.postReview(this.review).subscribe(() => {
       this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
       this.review = {
+        groupId: "",
         mood: "",
         comment: "",
         date: null
