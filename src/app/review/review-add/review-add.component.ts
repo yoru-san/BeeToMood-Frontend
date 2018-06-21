@@ -3,8 +3,8 @@ import { Review } from '../shared/review';
 import { ReviewService } from '../shared/review.service';
 import { ToastrService } from 'ngx-toastr';
 import { Group } from '../../group/shared/group';
-import { User } from '../../user/shared/user';
 import { GroupService } from '../../group/shared/group.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-review-add',
@@ -44,7 +44,7 @@ export class ReviewAddComponent implements OnInit {
   sendNewReview() {
     console.log(this.connectedUser.id);
     console.log(this.review);
-    this.review.date = new Date();
+    this.review.date = moment().format("MMM Do YY");
     this.review.userId = this.connectedUser.id;
     this.reviewService.postReview(this.review).subscribe(() => {
       this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
