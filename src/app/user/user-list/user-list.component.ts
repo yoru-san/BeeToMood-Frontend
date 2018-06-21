@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  
   public users : User[];
   constructor(private userService : UserService, private toastrService: ToastrService, private router: Router) { }
   
@@ -19,6 +18,8 @@ export class UserListComponent implements OnInit {
       this.users = data;
       console.log(data);
     });
+
+
   }
   
   deleteUser(user) {
