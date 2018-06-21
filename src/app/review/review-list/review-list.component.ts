@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../shared/review.service';
 import { Review } from '../shared/review';
-import { User } from '../../user/shared/user';
 import * as Chart from 'chart.js';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
@@ -15,8 +14,9 @@ import { Router } from '@angular/router';
 export class ReviewListComponent implements OnInit {
 
   public BarChart:any;
-  public reviews : Review;
+  public reviews : Review[];
   connectedUser;
+
   constructor(
     private reviewService: ReviewService, 
     private toastrService: ToastrService,
@@ -25,8 +25,9 @@ export class ReviewListComponent implements OnInit {
 
   ngOnInit() {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+
   console.log(this.connectedUser.groups);
-    this.reviewService.getReview("groupId=" + this.connectedUser.groups).subscribe(data => {
+    this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
       this.reviews = data;
     });
     this.BarChart = new Chart('barChart', {
@@ -69,24 +70,16 @@ export class ReviewListComponent implements OnInit {
         }
       }
     });
-  // console.log(this.connectedUser.groups);
-  //   this.reviewService.getReview("groupId=" + this.connectedUser.groups).subscribe(data => {
-  //     this.reviews = data;
-  //   });
   }
 
   checkUserReviews() {
     this.reviewService.getReview(this.connectedUser.id).subscribe(data => {
       data.forEach(review => {
-        if (!(review.date == moment().format("MMM Do YY"))) {
-          this.router.navigate(["review/add"]);
-          return;
-        } else {
+        if (review.date == moment().format("MMM Do YY")) {
           this.toastrService.error("Impossible d'envoyer 2 reviews le même jour", "Erreur");
         }
+        this.router.navigate(["review/add"]);
       });
     });
   }
-
-
 }
