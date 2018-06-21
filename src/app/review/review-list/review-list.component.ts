@@ -28,6 +28,7 @@ export class ReviewListComponent implements OnInit {
 
   console.log(this.connectedUser.groups);
     this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
+      console.log(data)
       this.reviews = data;
     });
     this.BarChart = new Chart('barChart', {
@@ -71,13 +72,21 @@ export class ReviewListComponent implements OnInit {
   }
 
   checkUserReviews() {
+    console.log("User review")
+    let alreadyNotified = false;
     this.reviewService.getReview(this.connectedUser.id).subscribe(data => {
       data.forEach(review => {
+        if (alreadyNotified) return;
+
         if (review.date == moment().format("MMM Do YY")) {
           this.toastrService.error("Impossible d'envoyer 2 reviews le même jour", "Erreur");
+          alreadyNotified = true;
+          return;
         }
-        this.router.navigate(["review/add"]);
       });
+
+      if (!alreadyNotified)
+        this.router.navigate(["review/add"]);
     });
   }
 }
