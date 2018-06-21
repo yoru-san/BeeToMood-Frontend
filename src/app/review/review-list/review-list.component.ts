@@ -14,6 +14,7 @@ export class ReviewListComponent implements OnInit {
 
   public reviews : Review;
   connectedUser;
+
   constructor(
     private reviewService: ReviewService, 
     private toastrService: ToastrService,
@@ -22,24 +23,16 @@ export class ReviewListComponent implements OnInit {
 
   ngOnInit() {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
-  // console.log(this.connectedUser.groups);
-  //   this.reviewService.getReview("groupId=" + this.connectedUser.groups).subscribe(data => {
-  //     this.reviews = data;
-  //   });
   }
 
   checkUserReviews() {
     this.reviewService.getReview(this.connectedUser.id).subscribe(data => {
       data.forEach(review => {
-        if (!(review.date == moment().format("MMM Do YY"))) {
-          this.router.navigate(["review/add"]);
-          return;
-        } else {
+        if (review.date == moment().format("MMM Do YY")) {
           this.toastrService.error("Impossible d'envoyer 2 reviews le même jour", "Erreur");
         }
+        this.router.navigate(["review/add"]);
       });
     });
   }
-
-
 }
