@@ -14,7 +14,7 @@ import { GroupService } from '../../group/shared/group.service';
 export class ReviewAddComponent implements OnInit {
 
   review: Review;
-  connectedUser: User;
+  connectedUser;
   userGroup: Group[];
 
   constructor(
@@ -42,9 +42,10 @@ export class ReviewAddComponent implements OnInit {
   }
 
   sendNewReview() {
+    console.log(this.connectedUser.id);
     console.log(this.review);
     this.review.date = new Date();
-    this.review.userId = this.connectedUser._id;
+    this.review.userId = this.connectedUser.id;
     this.reviewService.postReview(this.review).subscribe(() => {
       this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
       this.review = {

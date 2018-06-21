@@ -15,7 +15,7 @@ export class ReviewService {
     return this.http.get(this.reviewUrl + "?" + query);
   }
 
-  postReview(review: Review) : Observable<Review> {
+  postReview(review) : Observable<Review> {
     return this.http.post<Review>(this.reviewUrl, { group: review.group, userId: review.userId, mood: review.mood, comment: review.comment, date: review.date});
   }
 
