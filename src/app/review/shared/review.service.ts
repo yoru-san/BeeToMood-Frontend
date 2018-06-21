@@ -6,13 +6,12 @@ import { Review } from './review';
 @Injectable()
 export class ReviewService {
   
-  private reviewUrl = "http://localhost:8080/api/reviews"
+  private reviewUrl = "http://localhost:8080/api/reviews/"
 
   constructor(private http : HttpClient) { }
 
-  getReview (query): Observable<any> {
-    console.log(query)
-    return this.http.get(this.reviewUrl + "?" + query);
+  getReview (userId): Observable<any> {
+    return this.http.get(this.reviewUrl + userId);
   }
 
   postReview(review) : Observable<Review> {

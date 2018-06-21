@@ -3,5 +3,5 @@ export class Review {
     userId: string;
     mood: string;
     comment: string;
-    date: Date;
+    date: string;
 }
