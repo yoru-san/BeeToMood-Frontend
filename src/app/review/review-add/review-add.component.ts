@@ -15,21 +15,26 @@ export class ReviewAddComponent implements OnInit {
 
   review: Review;
   connectedUser: User;
-  usergroups: Group[];
+  userGroup: Group[];
 
-  constructor(private reviewService : ReviewService, private toastrService : ToastrService, private groupService: GroupService) { }
+  constructor(
+    private reviewService : ReviewService, 
+    private toastrService : ToastrService, 
+    private groupService: GroupService) { }
 
   ngOnInit() {
-    this.usergroups = [];
+    this.userGroup = [];
 
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
       this.connectedUser.groups.forEach(g => {
-        this.usergroups.push(g);
-        console.log(this.usergroups)
+        this.groupService.getGroup(g).subscribe(data => {
+          this.userGroup.push(data);
+        });
       });
     
     this.review = {
-      groupId: "",
+      group: "",
+      userId: "",
       mood: "",
       comment: "",
       date: null
@@ -39,10 +44,12 @@ export class ReviewAddComponent implements OnInit {
   sendNewReview() {
     console.log(this.review);
     this.review.date = new Date();
+    this.review.userId = this.connectedUser._id;
     this.reviewService.postReview(this.review).subscribe(() => {
       this.toastrService.info('Envoyée', 'Votre review a bien été envoyée.');
       this.review = {
-        groupId: "",
+        group: "",
+        userId: "",
         mood: "",
         comment: "",
         date: null

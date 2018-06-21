@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Review } from './review';
-import { query } from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class ReviewService {
@@ -17,7 +16,7 @@ export class ReviewService {
   }
 
   postReview(review: Review) : Observable<Review> {
-    return this.http.post<Review>(this.reviewUrl, { mood: review.mood, comment: review.comment, date: review.date});
+    return this.http.post<Review>(this.reviewUrl, { group: review.group, userId: review.userId, mood: review.mood, comment: review.comment, date: review.date});
   }
 
 }

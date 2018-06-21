@@ -22,4 +22,8 @@ export class ReviewListComponent implements OnInit {
     });
   }
 
+  checkUserReviews() {
+    this.reviewService.getReview("")
+  }
+
 }

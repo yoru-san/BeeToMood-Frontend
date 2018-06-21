@@ -1,5 +1,6 @@
 export class Review {
-    groupId: string;
+    group: string;
+    userId: string;
     mood: string;
     comment: string;
     date: Date;

@@ -43,7 +43,8 @@ export class UserAddComponent implements OnInit {
       email: "",
       password: "",
       groups: [],
-      type: ""
+      type: "",
+      firstConnection: null
     };
 
     this.userId = this.activatedRoute.snapshot.params.id;
@@ -65,7 +66,8 @@ export class UserAddComponent implements OnInit {
         email: "",
         password: "",
         groups: Group[""],
-        type: ""
+        type: "",
+        firstConnection: null
       };
     });
   }

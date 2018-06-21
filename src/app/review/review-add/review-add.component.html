@@ -1,11 +1,6 @@
 <div class="container-fluid center">
     <form>
-        <div class="form-row">
-            <span>Groupe correspondant :</span>
-            <select name="groupId" [(ngModel)]="review.groupId">
-                <option *ngFor="let group of usergroups" value="group._id">{{ group.name }}</option>
-            </select>
-            
+        <div class="form-row">            
             <span>Mood du jour : </span>
             <select class="form-control" name="mood" id="select-mood" [(ngModel)]="review.mood">
                 <option value="amazing">&#xf118; Très bonne journée</option>
@@ -16,9 +11,12 @@
             </select><br>   
             <span>Laisser un commentaire (facultatif) : </span><br>
             <textarea class="form-control" name="comment"  rows="8" [(ngModel)]="review.comment"></textarea><br>   
+            <span>Groupe correspondant : </span>
+            <select class="form-control" name="group" id="select-group" [(ngModel)]="review.groupId">
+                <option *ngFor="let group of userGroup" value="group._id">{{group.name}}</option>
+            </select>
             <div class="col-md-8">
-                <small>Ce questionnaire restera anonyme.</small>
-                
+                <small>Ce questionnaire restera anonyme.</small>  
             </div>       
             <div class="col-md-4">
                 <input type="button" value="Envoyer" (click)="sendNewReview()" class="btn btn-custom-blue mb-2">  
