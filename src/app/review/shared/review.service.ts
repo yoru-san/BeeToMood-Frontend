@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Review } from './review';
+import * as moment from 'moment';
 
 @Injectable()
 export class ReviewService {
@@ -10,8 +11,15 @@ export class ReviewService {
 
   constructor(private http : HttpClient) { }
 
-  getReview (userId): Observable<any> {
-    return this.http.get(this.reviewUrl + userId);
+  getReview (userId): Observable<Review[]> {
+    return this.http.get<Review[]>(this.reviewUrl + userId);
+  }
+
+  getReviews(groupId): Observable<Review[]> {
+    return this.http.get<Review[]>(this.reviewUrl, { params: {
+      group: groupId,
+      date: moment().format("MMM Do YY")
+    }});
   }
 
   postReview(review) : Observable<Review> {

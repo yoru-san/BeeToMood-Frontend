@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ReviewListComponent implements OnInit {
 
   public BarChart:any;
-  public reviews : Review;
+  public reviews : Review[];
   connectedUser;
 
   constructor(
@@ -27,7 +27,7 @@ export class ReviewListComponent implements OnInit {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
 
   console.log(this.connectedUser.groups);
-    this.reviewService.getReview("groupId=" + this.connectedUser.groups).subscribe(data => {
+    this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
       this.reviews = data;
     });
     this.BarChart = new Chart('barChart', {
