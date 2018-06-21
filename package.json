@@ -26,6 +26,7 @@
     "angular-dateParser": "^1.2.0",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.1.1",
+    "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "moment": "^2.22.2",
