@@ -16,9 +16,9 @@ export class GroupAddComponent implements OnInit {
 
   groupId: string;
   group: Group;
-  users: User[];
-  newUsers: User[];
-  usersInGroup: User[];
+  users: User[] = [];
+  newUsers: User[] = [];
+  usersInGroup: User[] = [];
   
   constructor(
     private groupService: GroupService,
@@ -28,11 +28,6 @@ export class GroupAddComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    this.group = {
-      name: "",
-      nextNotificationDate: {hour: 12, minute: 0}
-    };
-
     this.groupId = this.activatedRoute.snapshot.params.id;
     if (!isNullOrUndefined(this.groupId)) {
       this.groupService.getGroup(this.groupId).subscribe(data => {
@@ -44,21 +39,28 @@ export class GroupAddComponent implements OnInit {
         }
 
         this.group.nextNotificationDate = receivedMailHour;
+
+        this.userService.getUsers().subscribe(data => {
+          this.usersInGroup = data.filter(user => {
+            if (user.groups.findIndex(group => group._id == this.groupId) != -1)
+              return user;
+          });
+    
+          this.newUsers = data.filter(user => {
+            if (!this.usersInGroup.includes(user))
+              return user;
+          });
+        });
+      });
+    } else {
+      this.group = {
+        name: "",
+        nextNotificationDate: {hour: 12, minute: 0}
+      };
+      this.userService.getUsers().subscribe(data => {
+        this.newUsers = data;
       });
     }
-
-    console.log(this.groupId)
-    this.userService.getUsers().subscribe(data => {
-      this.usersInGroup = data.filter(user => {
-        if (user.groups.findIndex(group => group._id == this.groupId) != -1)
-          return user;
-      });
-
-      this.newUsers = data.filter(user => {
-        if (!this.usersInGroup.includes(user))
-          return user;
-      });
-    });
   }
   
   sendNewGroup() {
@@ -79,7 +81,9 @@ export class GroupAddComponent implements OnInit {
   }
 
   addUserToGroup(user) {
+    console.log(user)
     user.groups.push(this.group);
+    console.log(user.groups)
     this.usersInGroup.push(user);
     this.userService.updateUser(user).subscribe(() => {
       let userToRemove = this.newUsers.findIndex(x => x._id == user._id);

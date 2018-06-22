@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ToastrModule } from 'ngx-toastr';
 import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
@@ -55,7 +56,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CommonModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
-    DlDateTimePickerDateModule
+    DlDateTimePickerDateModule,
+    NgxDatatableModule
   ],
   providers: [UserService, ReviewService, GroupService, LoginService, ParameterService],
   bootstrap: [AppComponent]

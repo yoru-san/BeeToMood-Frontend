@@ -1,18 +1,17 @@
 <button id="btnAddReview" class="btn btn-custom-grey" (click)="checkUserReviews()">Ajouter une review</button>
 <div class="container-fluid reviewlist">
+    <h3>Reviews du jour : </h3>
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Mood</th>
         <th scope="col">Commentaire</th>
-        <th scope="col">Date</th>      
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let review of reviews;">
         <td>{{ review.mood }}</td>
         <td>{{ review.comment }}</td>
-        <td>{{ review.date }} </td>
       </tr>
     </tbody>
   </table>

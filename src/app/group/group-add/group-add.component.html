@@ -15,7 +15,7 @@
       <button type="submit" *ngIf="groupId" class="btn btn-custom-blue mb-2" (click)="editGroup()">Mettre a jour</button>
     </form>
 
-    <table class="table">
+    <table class="table" *ngIf="groupId">
         <thead>
           <tr>
             <th scope="col">Membre du groupe</th>
@@ -30,7 +30,7 @@
         </tbody>
       </table>
 
-      <table class="table">
+      <table class="table" *ngIf="groupId">
         <thead>
           <tr>
             <th scope="col">Autres utilisateurs</th>
