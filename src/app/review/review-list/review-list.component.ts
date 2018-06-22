@@ -16,6 +16,12 @@ export class ReviewListComponent implements OnInit {
   public BarChart:any;
   public reviews : Review[];
   connectedUser;
+  amazingMoods: number = 0;
+  goodMoods: number = 0;
+  normalMoods: number = 0;
+  badMoods: number = 0;
+  dificultMoods: number = 0;
+  allMoods: number[] = [];
 
   constructor(
     private reviewService: ReviewService, 
@@ -25,33 +31,43 @@ export class ReviewListComponent implements OnInit {
 
   ngOnInit() {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+    
+    let moods = [
+      {name: "amazing", number: 0 },
+      {name: "good", number: 0 },
+      {name: "normal", number: 0 },
+      {name: "bad", number: 0 },
+      {name: "difficult", number: 0 } 
+    ];
 
-  console.log(this.connectedUser.groups);
     this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
-      console.log(data)
       this.reviews = data;
+
+      data.map(review => {
+        let changingMood = moods.find(mood => mood.name === review.mood);
+        changingMood.number++;
+      });
+      
+      this.allMoods = moods.map(mood => mood.number).reverse();
+
+      this.initializeChart();
     });
+  }
+
+  initializeChart() {
     this.BarChart = new Chart('barChart', {
       type: 'bar',
       data:{
         labels:["Journée difficile","Mauvaise journée","Journée normale","Bonne journée","Très bonne journée"],
         datasets:[{ 
           label:'# vote',
-          data:[
-            2,
-            5,
-            3,
-            7,
-            6
-          ],
+          data: this.allMoods,
           backgroundColor:[
             'rgba(244, 66, 66,0.3)', 
             'rgba(244, 184, 65,0.3)',
             'rgba(251, 255, 28,0.3)',
             'rgba(7, 170, 234,0.3)',
-            'rgba(94, 229, 105,0.3)',
-
-          
+            'rgba(94, 229, 105,0.3)'
           ]
         }]
       },
@@ -74,7 +90,6 @@ export class ReviewListComponent implements OnInit {
   }
 
   checkUserReviews() {
-    console.log("User review")
     let alreadyNotified = false;
     this.reviewService.getReview(this.connectedUser.id).subscribe(data => {
       data.forEach(review => {
