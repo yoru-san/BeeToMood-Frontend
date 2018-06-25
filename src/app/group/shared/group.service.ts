@@ -10,8 +10,11 @@ export class GroupService {
   
   constructor(private http: HttpClient) { }
   
-  getGroups(): Observable<Group[]> {
-    return this.http.get<Group[]>(this.groupUrl);
+  getGroups(param?): Observable<Group[]> {
+    return this.http.get<Group[]>(this.groupUrl, { params: {
+      managerId: param
+    }
+  });
   }
 
   getGroup(groupId): Observable<Group> {

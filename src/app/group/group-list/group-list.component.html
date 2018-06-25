@@ -4,6 +4,7 @@
     <tr>
       <th scope="col">Nom</th>
       <th scope="col">Heure du mail journalier</th>
+      <th scope="col">Voir</th>
       <th scope="col">Modifier</th>
       <th scope="col">Supprimer</th>
       
@@ -13,6 +14,7 @@
     <tr *ngFor="let group of groups;">
       <td>{{ group.name }}</td>
       <td>{{ group.nextNotificationDate }}h </td>
+      <td><a class="btn btn-custom-blue" [routerLink]="['/review', group._id]"><fa name="eye"></fa></a></td>
       <td><a class="btn btn-secondary" [routerLink]="['edit', group._id]"><fa name="wrench"></fa></a></td>
       <td><button class="btn btn-danger btn-sm" (click)="deleteGroup(group._id)"><fa name="trash"></fa></button></td>
 

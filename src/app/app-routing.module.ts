@@ -17,6 +17,7 @@ import { IsAllowedGuard } from './guards/is-allowed.guard';
 const routes: Routes = [
   { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
   { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
+  { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
   { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard] },
   { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
   { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../shared/group.service';
 import { Group } from '../shared/group';
 import { ToastrService } from 'ngx-toastr';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../../user/shared/user';
 
 @Component({
   selector: 'app-group-list',
@@ -12,11 +12,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class GroupListComponent implements OnInit {
 
   public group : Group;
-  public groups : Group[];  
+  public groups : Group[]; 
+  public connectedUser: User;
   constructor(private groupService: GroupService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(data => {
+    this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
+    this.groupService.getGroups(this.connectedUser._id).subscribe(data => {
       this.groups = data;
     });
 
