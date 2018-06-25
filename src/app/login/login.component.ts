@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private toastrService: ToastrService) {}
   
   ngOnInit() {
+    //On retire l'objet en sesssionStorage systématiquement
     sessionStorage.removeItem('user');
     this.user = {
       email: "",
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
     }
   }
   
+  //On hash le mot de passe avant de vérifier l'existence de l'utilisateur en base
   connexion() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
@@ -39,9 +41,10 @@ export class LoginComponent implements OnInit {
         this.connectedUser.type = data.type;
         this.connectedUser.name = data.name;
         this.connectedUser.surname = data.surname;    
-        this.connectedUser.groups = data.groups;        
+        this.connectedUser.groups = data.groups; 
+        //On crée un nouvel objet en sessionStorage       
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
-        console.log(data.firstConnection);
+        //Si c'est la première connexion de l'utilisateur, on le redirige vers les paramètres
         if (!data.firstConnection) {
           data.firstConnection = true;
           this.connectedUser.firstConnection = data.firstConnection;

@@ -16,7 +16,7 @@ export class ReviewAddComponent implements OnInit {
 
   review: Review;
   connectedUser: User;
-  userGroup: Group[];
+  userGroup: Group[] = [];
 
   constructor(
     private reviewService : ReviewService, 
@@ -24,8 +24,7 @@ export class ReviewAddComponent implements OnInit {
     private groupService: GroupService) { }
 
   ngOnInit() {
-    this.userGroup = [];
-
+    //Récupération des groupes de l'utilisateur pour qu'il puisse choisir le groupe correspondant à la review
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
       this.connectedUser.groups.forEach(g => {
         this.groupService.getGroup(g).subscribe(data => {
@@ -42,6 +41,7 @@ export class ReviewAddComponent implements OnInit {
     };
   }
 
+  //Envoi d'une nouvelle review
   sendNewReview() {
     console.log(this.connectedUser._id);
     console.log(this.review);

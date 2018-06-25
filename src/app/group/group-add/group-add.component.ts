@@ -66,6 +66,7 @@ export class GroupAddComponent implements OnInit {
     this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
   }
   
+  //Création d'un nouveau groupe
   sendNewGroup() {
     console.log(this.group.nextNotificationDate)
     this.group.managerId = this.connectedUser._id;
@@ -80,29 +81,34 @@ export class GroupAddComponent implements OnInit {
     });
   }
 
+  //Mise à jour d'un groupe existant
   editGroup() {
     this.groupService.updateGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été mis a jour.', 'Envoyée');
     });
   }
 
+  //Ajout d'un utilisateur à un groupe (possible seulement lors de l'édition du groupe)
   addUserToGroup(user) {
-    console.log(user)
     user.groups.push(this.group);
-    console.log(user.groups)
+    //ajout dans la liste des membres du groupe
     this.usersInGroup.push(user);
     this.userService.updateUser(user).subscribe(() => {
+      //retrait de la liste des potentiels membres du groupe
       let userToRemove = this.newUsers.findIndex(x => x._id == user._id);
       this.newUsers.splice(userToRemove, 1);
     });
   }
 
+  //Suppression d'un utilisateur dans un groupe (possible seulement lors de l'édition du groupe)
   deleteUserFromGroup(user) {
+    //retrait de la liste des membres du groupe
     let groupToRemove = user.groups.findIndex(x => x._id == this.groupId);
     user.groups.splice(groupToRemove, 1);
     this.userService.updateUser(user).subscribe(() => {
       let userToRemove = this.usersInGroup.findIndex(x => x._id == user._id);
       this.usersInGroup.splice(userToRemove, 1);
+          //ajout dans la liste des potentiels membres du groupe
       this.newUsers.push(user);
     })
   }

@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //Si l'utilisateur est un employé, il a seulement accès au reviews
     this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
     if (this.connectedUser.type == "Employee")
       this.isEmployee = true;

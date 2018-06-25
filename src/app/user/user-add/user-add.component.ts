@@ -30,6 +30,7 @@ export class UserAddComponent implements OnInit {
   
   ngOnInit() {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
+    //Vérification que l'utilisateur soit administrateur pour créer un Manager
     if (this.connectedUser.type == "Admin") {
       this.isAllowed = true;
     }
@@ -47,6 +48,7 @@ export class UserAddComponent implements OnInit {
       firstConnection: null
     };
 
+    //Si l'utilisateur existe déjà
     this.userId = this.activatedRoute.snapshot.params.id;
     if (!(isNullOrUndefined(this.userId))) {
       this.userService.getUser(this.userId).subscribe(data => {
@@ -55,6 +57,7 @@ export class UserAddComponent implements OnInit {
     }
   }
   
+  //Envoi d'un nouvel utilisateur avec hashage du mot de passe
   sendNewUser() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.userService.postUser(this.user).subscribe(() => {
@@ -72,6 +75,7 @@ export class UserAddComponent implements OnInit {
     });
   }
 
+  //Mise à jour d'un utilisateur avec hashage du mot de passe
   updateExistingUser() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.userService.updateUser(this.user).subscribe(() => {

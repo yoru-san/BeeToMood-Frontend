@@ -17,6 +17,7 @@ export class GroupListComponent implements OnInit {
   constructor(private groupService: GroupService, private toastrService: ToastrService) { }
 
   ngOnInit() {
+    //Récupération des groupes appartenant au Manager
     this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
     this.groupService.getGroups(this.connectedUser._id).subscribe(data => {
       this.groups = data;
@@ -29,6 +30,7 @@ export class GroupListComponent implements OnInit {
     };
   }
 
+  //Suppression d'un groupe
   deleteGroup(groupId) {
     this.groupService.removeGroup(groupId).subscribe(data => {
       let groupIndexDeleted = this.groups.findIndex(x => x._id == data._id);

@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  //On vérifie si l'utilisateur n'est pas déjà connecté avant de parser l'objet en sessionStorage et de créer un utilisateur
   isConnected() {
     if (this.sessionUser)
       return true;
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+  //On déconnecte l'utilisateur en retirant l'objet dans le sessionStorage et en le redirigeant
   deconnectUser(): void {
     this.sessionUser = false;
 

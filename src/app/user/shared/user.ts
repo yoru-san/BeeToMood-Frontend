@@ -1,5 +1,6 @@
 import { Group } from "../../group/shared/group";
 
+//Classe d'utilisateur
 export class User {
     _id?: string;
     name: string;

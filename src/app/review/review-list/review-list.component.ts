@@ -46,6 +46,7 @@ export class ReviewListComponent implements OnInit {
     this.connectedUser = JSON.parse(sessionStorage.getItem('user'));
     this.groupId = this.activatedRoute.snapshot.params.id;
     if (!(isNullOrUndefined(this.groupId))) {
+      //Vision du Manager
       this.isAdmin = true;
       this.reviewService.getReviews(this.groupId).subscribe(data => {
         this.reviews = data;
@@ -60,6 +61,7 @@ export class ReviewListComponent implements OnInit {
         this.initializeChart();
       });
     } else {
+      //Vision de l'employé
       this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
         console.log(data)
         console.log(this.connectedUser.groups[0])
@@ -80,7 +82,7 @@ export class ReviewListComponent implements OnInit {
     
     
   }
-  
+  //initialisation du graphique
   initializeChart() {
     this.BarChart = new Chart('barChart', {
       type: 'bar',
@@ -116,6 +118,7 @@ export class ReviewListComponent implements OnInit {
     });
   }
   
+  //Vérification que l'utilisateur n'a pas déjà envoyé une review aujourd'hui
   checkUserReviews() {
     let alreadyNotified = false;
     this.reviewService.getReview(this.connectedUser._id).subscribe(data => {

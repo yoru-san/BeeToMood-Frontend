@@ -9,6 +9,7 @@ export class IsLoggedGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      // Si l'utilisateur est connecté, il peut accéder à cette route
       if (sessionStorage.getItem('user'))
         return true;
 

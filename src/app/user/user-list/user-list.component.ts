@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
 
   }
   
+  //Supression d'un utilisateur avec retrait de la liste
   deleteUser(user) {
     this.userService.removeUser(user).subscribe(data => {
       console.log(data)

@@ -11,10 +11,7 @@ export class ReviewService {
 
   constructor(private http : HttpClient) { }
 
-  getReview (userId): Observable<Review[]> {
-    return this.http.get<Review[]>(this.reviewUrl + userId);
-  }
-
+  //Récupération des reviews selon l'id du groupe et la date du jour
   getReviews(groupId): Observable<Review[]> {
     return this.http.get<Review[]>(this.reviewUrl, { params: {
       group: groupId,
@@ -22,6 +19,12 @@ export class ReviewService {
     }});
   }
 
+  //Récupération des reviews d'un utilisateur précis
+  getReview (userId): Observable<Review[]> {
+    return this.http.get<Review[]>(this.reviewUrl + userId);
+  }
+
+  //Création d'une review
   postReview(review) : Observable<Review> {
     return this.http.post<Review>(this.reviewUrl, { group: review.group, userId: review.userId, mood: review.mood, comment: review.comment, date: review.date});
   }

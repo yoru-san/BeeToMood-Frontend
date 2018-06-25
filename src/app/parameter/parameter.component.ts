@@ -17,6 +17,7 @@ export class ParameterComponent implements OnInit {
   ngOnInit() {
   }
   
+  //On hash le nouveau mot de passe avant de le stocker en base
   validatePassword() {
     this.sessionUser = JSON.parse(sessionStorage.getItem('user'));
     this.newPassword = shajs('sha256').update(this.newPassword).digest('hex');
