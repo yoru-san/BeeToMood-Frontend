@@ -13,7 +13,7 @@ export class GroupListComponent implements OnInit {
 
   public group : Group;
   public groups : Group[];  
-  constructor(private groupService: GroupService, private toastrService: ToastrService, private modalService: NgbModal) { }
+  constructor(private groupService: GroupService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.groupService.getGroups().subscribe(data => {
@@ -21,6 +21,7 @@ export class GroupListComponent implements OnInit {
     });
 
     this.group = {
+      managerId: "",
       name: "",
       nextNotificationDate: null
     };

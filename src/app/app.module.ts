@@ -56,8 +56,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CommonModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
-    DlDateTimePickerDateModule,
-    NgxDatatableModule
+    DlDateTimePickerDateModule
   ],
   providers: [UserService, ReviewService, GroupService, LoginService, ParameterService],
   bootstrap: [AppComponent]

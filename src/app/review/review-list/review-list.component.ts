@@ -5,6 +5,7 @@ import * as Chart from 'chart.js';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { User } from '../../user/shared/user';
 
 @Component({
   selector: 'app-review-list',
@@ -15,7 +16,7 @@ export class ReviewListComponent implements OnInit {
 
   public BarChart:any;
   public reviews : Review[];
-  connectedUser;
+  connectedUser: User;
   amazingMoods: number = 0;
   goodMoods: number = 0;
   normalMoods: number = 0;
@@ -91,7 +92,7 @@ export class ReviewListComponent implements OnInit {
 
   checkUserReviews() {
     let alreadyNotified = false;
-    this.reviewService.getReview(this.connectedUser.id).subscribe(data => {
+    this.reviewService.getReview(this.connectedUser._id).subscribe(data => {
       data.forEach(review => {
         if (alreadyNotified) return;
 

@@ -20,7 +20,7 @@ export class GroupService {
 
   postGroup(group): Observable<Group> {    
     group.nextNotificationDate = group.nextNotificationDate.hour + ":" + group.nextNotificationDate.minute;
-    return this.http.post<Group>(this.groupUrl, {name: group.name, mailDate: group.nextNotificationDate});
+    return this.http.post<Group>(this.groupUrl, {name: group.name, mailDate: group.nextNotificationDate, managerId: group.managerId});
   }
 
   removeGroup(groupId): Observable<Group> {

@@ -19,6 +19,7 @@ export class GroupAddComponent implements OnInit {
   users: User[] = [];
   newUsers: User[] = [];
   usersInGroup: User[] = [];
+  connectedUser: User;
   
   constructor(
     private groupService: GroupService,
@@ -54,6 +55,7 @@ export class GroupAddComponent implements OnInit {
       });
     } else {
       this.group = {
+        managerId: "",
         name: "",
         nextNotificationDate: {hour: 12, minute: 0}
       };
@@ -61,13 +63,17 @@ export class GroupAddComponent implements OnInit {
         this.newUsers = data;
       });
     }
+    this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
   }
   
   sendNewGroup() {
     console.log(this.group.nextNotificationDate)
+    this.group.managerId = this.connectedUser._id;
+    console.log(this.group.managerId)
     this.groupService.postGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été crée.', 'Envoyée');
       this.group = {
+        managerId: "",
         name: "",
         nextNotificationDate: null
       };

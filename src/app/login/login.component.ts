@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
       if (data) {
-        this.connectedUser.id = data._id;
+        this.connectedUser._id = data._id;
         this.connectedUser.type = data.type;
         this.connectedUser.name = data.name;
         this.connectedUser.surname = data.surname;    
