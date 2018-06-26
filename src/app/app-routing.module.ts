@@ -17,7 +17,7 @@ import { FirstConnexionGuard } from './guards/first-connexion.guard';
 
 
 const routes: Routes = [
-  { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
+  { path: '', component: IndexComponent },
   { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
   { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
   { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'user', component: UserListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
   { path: 'user/add', component: UserAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
   { path: 'user/edit/:id', component: UserAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
-  { path: 'parameters', component: ParameterComponent, canActivate: [IsLoggedGuard] },
+  { path: 'parameters', component: ParameterComponent },
   { path: 'login', component: LoginComponent },          
   { path: '**', component: PageNotFoundComponent },
 ];

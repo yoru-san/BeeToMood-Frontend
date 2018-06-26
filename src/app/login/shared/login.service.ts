@@ -15,7 +15,7 @@ export class LoginService {
   }
   //Modification du statut de la première connexion de l'utilisateur
   changeConnectionStatus(user): Observable<User> {
-    return this.http.patch<User>(this.connexionUrl + user.id, {firstConnection: user.firstConnection});
+    return this.http.patch<User>(this.connexionUrl + user._id, {firstConnection: user.firstConnection});
   }
 
 }

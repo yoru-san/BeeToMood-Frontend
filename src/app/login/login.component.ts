@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './shared/login.service';
 import * as shajs from 'sha.js';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../user/shared/user.service';
+import { User } from '../user/shared/user';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { UserService } from '../user/shared/user.service';
 })
 export class LoginComponent implements OnInit {
   
-  public user;
+  public user: User;
   private connectedUser;
 
   
@@ -22,8 +22,14 @@ export class LoginComponent implements OnInit {
     //On retire l'objet en sesssionStorage systématiquement
     sessionStorage.removeItem('user');
     this.user = {
+      _id: "",
+      name: "",
+      surname: "",
+      groups: [],
       email: "",
-      password: ""
+      type: "",
+      password: "",
+      firstConnection: false
     }
     this.connectedUser = {
       type: "",
@@ -36,23 +42,30 @@ export class LoginComponent implements OnInit {
   connexion() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
+      console.log("user : " + data.firstConnection)
       if (data) {
         this.connectedUser._id = data._id;
         this.connectedUser.type = data.type;
         this.connectedUser.name = data.name;
         this.connectedUser.surname = data.surname;    
         this.connectedUser.groups = data.groups; 
-        this.connectedUser.firstConnection = data.firstConnection;
-        //On crée un nouvel objet en sessionStorage       
-        sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
         //Si c'est la première connexion de l'utilisateur, on le redirige vers les paramètres
         if (!data.firstConnection) {
+          console.log("premiere co")
           data.firstConnection = true;
           this.connectedUser.firstConnection = data.firstConnection;
-          this.loginService.changeConnectionStatus(this.connectedUser).subscribe(() => {
+        //On crée un nouvel objet en sessionStorage   
+        console.log(this.connectedUser.firstConnection)    
+        sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
+        console.log("on initialise l'user")
+          this.loginService.changeConnectionStatus(this.connectedUser).subscribe((data) => {
+            console.log("on change le statut" + data.firstConnection)
             this.router.navigate(["/parameters"]);
           });
         } else {
+          console.log("l'user s'est déja co")
+          sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
+          console.log("on navigue")
           this.router.navigate(["/"]);
         }
       } else {
