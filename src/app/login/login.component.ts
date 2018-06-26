@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.connectedUser.name = data.name;
         this.connectedUser.surname = data.surname;    
         this.connectedUser.groups = data.groups; 
+        this.connectedUser.firstConnection = data.firstConnection;
         //On crée un nouvel objet en sessionStorage       
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
         //Si c'est la première connexion de l'utilisateur, on le redirige vers les paramètres
