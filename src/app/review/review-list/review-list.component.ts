@@ -5,7 +5,6 @@ import * as Chart from 'chart.js';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../../user/shared/user';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -19,7 +18,7 @@ export class ReviewListComponent implements OnInit {
   isAdmin: boolean;
   public BarChart:any;
   public reviews : Review[];
-  connectedUser: User;
+  connectedUser;
   amazingMoods: number = 0;
   goodMoods: number = 0;
   normalMoods: number = 0;
@@ -77,11 +76,9 @@ export class ReviewListComponent implements OnInit {
         
         this.initializeChart();
       });
-    }
-    
-    
-    
+    } 
   }
+  
   //initialisation du graphique
   initializeChart() {
     this.BarChart = new Chart('barChart', {
@@ -133,7 +130,7 @@ export class ReviewListComponent implements OnInit {
       });
       
       if (!alreadyNotified)
-      this.router.navigate(["review/add"]);
+        this.router.navigate(["/", "review", "add"]);
     });
   }
 }

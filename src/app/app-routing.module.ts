@@ -12,15 +12,12 @@ import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { IsAllowedGuard } from './guards/is-allowed.guard';
-import { FirstConnexionGuard } from './guards/first-connexion.guard';
-
-
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
   { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
-  { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
   { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard] },
+  { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
   { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
   { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
   { path: 'group/edit/:id', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
@@ -35,6 +32,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [IsLoggedGuard, IsAllowedGuard, FirstConnexionGuard]
+  providers: [IsLoggedGuard, IsAllowedGuard]
 })
 export class AppRoutingModule { }
