@@ -34,7 +34,8 @@ export class UserAddComponent implements OnInit {
     if (this.connectedUser.type == "Admin") {
       this.isAllowed = true;
     }
-    this.groupService.getGroups().subscribe(data => {
+    this.groupService.getGroups(this.connectedUser._id).subscribe(data => {
+      console.log(data)
       this.groups = data;
     });
     this.user = {

@@ -12,18 +12,20 @@ import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { IsAllowedGuard } from './guards/is-allowed.guard';
+import { FirstConnexionGuard } from './guards/first-connexion.guard';
+
 
 
 const routes: Routes = [
   { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
-  { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
-  { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
-  { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard] },
-  { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
-  { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
-  { path: 'group/edit/:id', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
-  { path: 'user', component: UserListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
-  { path: 'user/add', component: UserAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
+  { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
+  { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
+  { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard] },
+  { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
+  { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
+  { path: 'group/edit/:id', component: GroupAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
+  { path: 'user', component: UserListComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
+  { path: 'user/add', component: UserAddComponent, canActivate: [IsLoggedGuard, FirstConnexionGuard, IsAllowedGuard] },
   { path: 'user/edit/:id', component: UserAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
   { path: 'parameters', component: ParameterComponent, canActivate: [IsLoggedGuard] },
   { path: 'login', component: LoginComponent },          
@@ -33,6 +35,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [IsLoggedGuard, IsAllowedGuard]
+  providers: [IsLoggedGuard, IsAllowedGuard, FirstConnexionGuard]
 })
 export class AppRoutingModule { }
