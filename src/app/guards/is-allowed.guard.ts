@@ -11,12 +11,10 @@ export class IsAllowedGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       // Si l'utilisateur connecté est un Manager, il peut accéder à cette route
       this.allowedUser = JSON.parse(sessionStorage.getItem('user'));
-      if (this.allowedUser.type == "Manager")
+      if (this.allowedUser.type == "Manager" ||this.allowedUser.type == "Manager")
         return true;
       
         this.router.navigate(['/']);
         return false;
-
-
   }
 }
