@@ -10,7 +10,7 @@ export class IsLoggedGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       // Si l'utilisateur est connecté, il peut accéder à cette route
-      if (!sessionStorage.getItem('user'))
+      if (sessionStorage.getItem('user'))
         return true;
 
       this.router.navigate(['/', 'login']);
