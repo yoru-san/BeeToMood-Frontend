@@ -11,10 +11,6 @@
             </select><br>   
             <span>Laisser un commentaire (facultatif) : </span><br>
             <textarea class="form-control" name="comment"  rows="8" [(ngModel)]="review.comment"></textarea><br>   
-            <span>Groupe correspondant : </span>
-            <select class="form-control" name="group" id="select-group" [(ngModel)]="review.group">
-                <option *ngFor="let group of userGroup" value="{{group._id}}">{{group.name}}</option>
-            </select>
             <div class="col-md-8">
                 <small>Ce questionnaire restera anonyme.</small>  
             </div>       

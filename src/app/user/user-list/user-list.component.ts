@@ -10,15 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  public users : User[];
+  public users : User[] = [];
   constructor(private userService : UserService, private toastrService: ToastrService, private router: Router) { }
   
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
-      this.users = data;
+      data.forEach(user => {
+        if (user.type != "Admin")
+          this.users.push(user);
+         
+      });
     });
-
-
   }
   
   //Supression d'un utilisateur avec retrait de la liste

@@ -19,6 +19,7 @@ export class GroupListComponent implements OnInit {
   ngOnInit() {
     //Récupération des groupes appartenant au Manager
     this.connectedUser = JSON.parse(sessionStorage.getItem("user"));
+    console.log(this.connectedUser._id)
     this.groupService.getGroups(this.connectedUser._id).subscribe(data => {
       this.groups = data;
     });

@@ -16,7 +16,7 @@
       <td>{{ group.nextNotificationDate }}h </td>
       <td><a class="btn btn-custom-blue" [routerLink]="['/review', group._id]"><fa name="eye"></fa></a></td>
       <td><a class="btn btn-secondary" [routerLink]="['edit', group._id]"><fa name="wrench"></fa></a></td>
-      <td><button class="btn btn-danger btn-sm" (click)="deleteGroup(group._id)"><fa name="trash"></fa></button></td>
+      <td><button class="btn btn-danger" (click)="deleteGroup(group._id)"><fa name="trash"></fa></button></td>
 
     </tr>
   </tbody>
