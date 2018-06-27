@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReviewService } from '../shared/review.service';
 import { Review } from '../shared/review';
 import * as Chart from 'chart.js';
-import * as moment from 'moment';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -28,9 +26,7 @@ export class ReviewListComponent implements OnInit {
   
   constructor(
     private reviewService: ReviewService, 
-    private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
   ) { }
   
   ngOnInit() {

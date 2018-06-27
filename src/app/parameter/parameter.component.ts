@@ -19,10 +19,11 @@ export class ParameterComponent implements OnInit {
   
   //On hash le nouveau mot de passe avant de le stocker en base
   validatePassword() {
+    console.log("changer le mdp")
     this.sessionUser = JSON.parse(sessionStorage.getItem('user'));
     this.newPassword = shajs('sha256').update(this.newPassword).digest('hex');
 
-    this.parameterService.updatePassword(this.sessionUser.id, this.newPassword).subscribe(() => {
+    this.parameterService.updatePassword(this.sessionUser._id, this.newPassword).subscribe(() => {
       this.toastrService.info('Votre mot de passe a bien été modifié.', 'Réussite');
       this.newPassword = "";
     }, () => {

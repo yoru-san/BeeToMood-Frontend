@@ -9,7 +9,8 @@ export class ParameterService {
   constructor(private http: HttpClient) { }
 
   //Mise à jour du nouveau mot de passe de l'utilisateur
-  updatePassword(id, password) {
-    return this.http.patch(this.parameterUrl + id, {password: password});
+  updatePassword(_id, password) {
+    console.log(_id)
+    return this.http.patch(this.parameterUrl + _id, {password: password});
   }
 }
