@@ -43,8 +43,6 @@ export class ReviewAddComponent implements OnInit {
 
   //Envoi d'une nouvelle review
   sendNewReview() {
-    console.log(this.connectedUser._id);
-    console.log(this.review);
     this.review.date = moment().format("MMM Do YY");
     this.review.userId = this.connectedUser._id;
     this.reviewService.postReview(this.review).subscribe(() => {

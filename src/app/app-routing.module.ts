@@ -12,11 +12,13 @@ import { ParameterComponent } from './parameter/parameter.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { IsAllowedGuard } from './guards/is-allowed.guard';
+import { MemberSpaceComponent } from './member-space/member-space.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent, canActivate: [IsLoggedGuard] },
+  { path: 'member', component: MemberSpaceComponent, canActivate: [IsLoggedGuard] },
   { path: 'review', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
-  { path: 'review/add', component: ReviewAddComponent, canActivate: [IsLoggedGuard] },
+  { path: 'review/add/:id', component: ReviewAddComponent, canActivate: [IsLoggedGuard] },
   { path: 'review/:id', component: ReviewListComponent, canActivate: [IsLoggedGuard] },
   { path: 'group', component: GroupListComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },
   { path: 'group/add', component: GroupAddComponent, canActivate: [IsLoggedGuard, IsAllowedGuard] },

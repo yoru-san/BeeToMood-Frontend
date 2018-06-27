@@ -68,9 +68,7 @@ export class GroupAddComponent implements OnInit {
   
   //Création d'un nouveau groupe
   sendNewGroup() {
-    console.log(this.group.nextNotificationDate)
     this.group.managerId = this.connectedUser._id;
-    console.log(this.group.managerId)
     this.groupService.postGroup(this.group).subscribe(() => {
       this.toastrService.info('Votre groupe a bien été crée.', 'Envoyée');
       this.group = {

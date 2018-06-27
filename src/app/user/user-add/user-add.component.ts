@@ -35,7 +35,6 @@ export class UserAddComponent implements OnInit {
       this.isAllowed = true;
     }
     this.groupService.getGroups(this.connectedUser._id).subscribe(data => {
-      console.log(data)
       this.groups = data;
     });
     this.user = {

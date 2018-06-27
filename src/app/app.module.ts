@@ -29,6 +29,7 @@ import { LoginService } from './login/shared/login.service';
 import { GroupAddComponent } from './group/group-add/group-add.component';
 import { IndexComponent } from './index/index.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MemberSpaceComponent } from './member-space/member-space.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     GroupAddComponent,
     IndexComponent,
     PageNotFoundComponent,
+    MemberSpaceComponent,
   ],
   imports: [
     BrowserModule,

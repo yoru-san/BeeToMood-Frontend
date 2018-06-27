@@ -1,0 +1,18 @@
+<h3>Vos groupes : </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <td>Voir les reviews</td>
+      <td>Ajouter une review</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let group of groups">
+    <tr>
+      <td>{{group.name}}</td>
+      <td><a class="btn btn-custom-blue" [routerLink]="['/review', group._id]"><fa name="eye"></fa></a></td>
+      <td><a class="btn btn-secondary" (click)="checkUserReviews(group._id)"><fa name="pencil"></fa></a></td>    
+    </tr>
+  </tbody>
+</table>
+

@@ -62,9 +62,6 @@ export class ReviewListComponent implements OnInit {
     } else {
       //Vision de l'employé
       this.reviewService.getReviews(this.connectedUser.groups[0]).subscribe(data => {
-        console.log(data)
-        console.log(this.connectedUser.groups[0])
-
         this.reviews = data;
         
         data.map(review => {
@@ -73,10 +70,12 @@ export class ReviewListComponent implements OnInit {
         });
         
         this.allMoods = moods.map(mood => mood.number).reverse();
+
+
         
         this.initializeChart();
       });
-    } 
+    }
   }
   
   //initialisation du graphique
@@ -107,30 +106,11 @@ export class ReviewListComponent implements OnInit {
             ticks: {
               beginAtZero:true,
               min:0,
-              max:20
+              max: this.allMoods.length
             }
           }]
         }
       }
-    });
-  }
-  
-  //Vérification que l'utilisateur n'a pas déjà envoyé une review aujourd'hui
-  checkUserReviews() {
-    let alreadyNotified = false;
-    this.reviewService.getReview(this.connectedUser._id).subscribe(data => {
-      data.forEach(review => {
-        if (alreadyNotified) return;
-        
-        if (review.date == moment().format("MMM Do YY")) {
-          this.toastrService.error("Impossible d'envoyer 2 reviews le même jour", "Erreur");
-          alreadyNotified = true;
-          return;
-        }
-      });
-      
-      if (!alreadyNotified)
-        this.router.navigate(["/", "review", "add"]);
     });
   }
 }

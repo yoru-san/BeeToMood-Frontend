@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   connexion() {
     this.user.password = shajs('sha256').update(this.user.password).digest('hex');
     this.loginService.findExistingUser(this.user).subscribe(data => {
-      console.log("user : " + data.firstConnection)
       if (data) {
         this.connectedUser._id = data._id;
         this.connectedUser.type = data.type;
@@ -51,21 +50,15 @@ export class LoginComponent implements OnInit {
         this.connectedUser.groups = data.groups; 
         //Si c'est la première connexion de l'utilisateur, on le redirige vers les paramètres
         if (!data.firstConnection) {
-          console.log("premiere co")
           data.firstConnection = true;
           this.connectedUser.firstConnection = data.firstConnection;
         //On crée un nouvel objet en sessionStorage   
-        console.log(this.connectedUser.firstConnection)    
         sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
-        console.log("on initialise l'user")
           this.loginService.changeConnectionStatus(this.connectedUser).subscribe((data) => {
-            console.log("on change le statut" + data.firstConnection)
             this.router.navigate(["/parameters"]);
           });
         } else {
-          console.log("l'user s'est déja co")
           sessionStorage.setItem('user', JSON.stringify(this.connectedUser));
-          console.log("on navigue")
           this.router.navigate(["/"]);
         }
       } else {

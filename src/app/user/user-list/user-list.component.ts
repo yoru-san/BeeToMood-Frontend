@@ -16,7 +16,6 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
-      console.log(data);
     });
 
 
@@ -25,7 +24,6 @@ export class UserListComponent implements OnInit {
   //Supression d'un utilisateur avec retrait de la liste
   deleteUser(user) {
     this.userService.removeUser(user).subscribe(data => {
-      console.log(data)
       let userIndexDeleted = this.users.findIndex(x => x._id == data._id);
       this.users.splice(userIndexDeleted, 1);
       this.toastrService.info('Utilisateur ' + data.name + " " + data.surname + ' supprimé');
